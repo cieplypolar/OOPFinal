@@ -6,7 +6,7 @@ public class Player extends Entity {
     private int playerAction = IDLE;
     private boolean moving = false, attacking = false;
     private boolean left, up, right, down;
-    private double playerSpeed = 2.0f;
+    private double playerSpeed = 1.5f;
 
     private int playerWidth = 50, playerHeight = 37;
     public Player(double x, double y, double health) {
@@ -18,6 +18,13 @@ public class Player extends Entity {
         right = false;
         up = false;
         down = false;
+    }
+    public Facing getFacing(){
+        return this.facing;
+    }
+
+    public void setFacing(Facing facing){
+        this.facing = facing;
     }
 
     public int getPlayerHeight() {

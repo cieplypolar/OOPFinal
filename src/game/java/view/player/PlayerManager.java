@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 import static utilities.constans.Constants.PlayerConstants.*;
 import static utilities.constans.Constants.View.SCALE;
+import static utilities.images.ImageHandler.reflectImg;
 import static utilities.loaders.PlayerLoader.loadPlayerAnimations;
 
 public class PlayerManager {
@@ -80,7 +81,7 @@ public class PlayerManager {
     }
 
     public void render(Graphics g) {
-        g.drawImage(animations[this.player.getPlayerAction()][aniIndex],
+        g.drawImage(((this.player.getFacing() == Facing.RIGHT) ? animations[this.player.getPlayerAction()][aniIndex] : reflectImg(animations[this.player.getPlayerAction()][aniIndex])),
                 (int) this.player.getPlayerX(), (int) this.player.getPlayerY(),
                 this.player.getPlayerWidth() * SCALE, this.player.getPlayerHeight() * SCALE,
                 null);

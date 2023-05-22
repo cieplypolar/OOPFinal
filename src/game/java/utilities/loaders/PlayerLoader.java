@@ -2,29 +2,12 @@ package utilities.loaders;
 
 import utilities.constans.Constants;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
 import static utilities.constans.Constants.PlayerConstants.*;
+import static utilities.images.ImageHandler.importImg;
 
 public class PlayerLoader {
-    public static BufferedImage importImg(String path){
-        InputStream is = PlayerLoader.class.getResourceAsStream(path);
-        try {
-            return ImageIO.read(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
     public static BufferedImage[][] loadPlayerAnimations() {
         BufferedImage[][] animations = new BufferedImage[9][7];
         for (int i = 0; i < GetSpriteAmount(IDLE); ++i) {
