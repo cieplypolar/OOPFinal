@@ -9,6 +9,7 @@ public class Player extends Entity {
     private double playerSpeed = 1.5f;
 
     private int playerWidth = 50, playerHeight = 37;
+
     public Player(double x, double y, double health) {
         super(x, y, health);
     }
