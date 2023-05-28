@@ -18,8 +18,9 @@ public class Game implements Runnable {
     private final int UPS_SET = 200;
     public final static int HEIGHT = 10;
     public final static int WIDTH = 20;
-    public final static int GAME_HEIGHT = HEIGHT * 32 * SCALE;
-    public final static int GAME_WIDTH = WIDTH * 32 * SCALE;
+    public final static int TILES_SIZE = 32;
+    public final static int GAME_HEIGHT = HEIGHT * TILES_SIZE * SCALE;
+    public final static int GAME_WIDTH = WIDTH * TILES_SIZE * SCALE;
     private PlayerManager player;
     private LevelManager level;
 
@@ -34,7 +35,7 @@ public class Game implements Runnable {
     }
 
     private void initClasses() {
-        player = new PlayerManager(100, 100, 100);
+        player = new PlayerManager(this,100, 100);
         level = new LevelManager(this);
     }
 
