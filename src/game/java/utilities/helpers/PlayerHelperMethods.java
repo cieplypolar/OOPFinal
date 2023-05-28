@@ -2,10 +2,13 @@ package utilities.helpers;
 
 import controller.loop.Game;
 
+import static utilities.constants.Constants.View.SCALE;
+
 public class PlayerHelperMethods {
     public static boolean CanMoveHere(double x, double y, double width, double height, int[][] lvlData) {
         return !isSolid(x, y, lvlData) && !isSolid(x + width, y + height, lvlData)
-                && !isSolid(x + width, y, lvlData) && !isSolid(x, y + height, lvlData);
+               && !isSolid(x + width, y, lvlData) && !isSolid(x, y + height, lvlData);
+
     }
 
     private static boolean isSolid(double x, double y, int[][] lvlData) {
@@ -14,13 +17,13 @@ public class PlayerHelperMethods {
         if (y < 0 || y >= Game.GAME_HEIGHT)
             return true;
 
-        double xIndex = x / Game.TILES_SIZE;
-        double yIndex = y / Game.TILES_SIZE;
+        double xIndex = x / (Game.TILES_SIZE*SCALE);
+        double yIndex = y / (Game.TILES_SIZE*SCALE);
 
-        int value = lvlData[(int) yIndex][(int) xIndex];
+       int value = lvlData[(int) yIndex][(int) xIndex];
 
-        if (value <= 180 && value != 0)
-            return true;
+           if (value <= 180 && value != 0)
+               return true;
         return false;
     }
 }
