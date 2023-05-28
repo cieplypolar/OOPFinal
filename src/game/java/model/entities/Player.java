@@ -10,10 +10,9 @@ public class Player extends Entity {
     private boolean moving = false, attacking = false;
     private boolean left, up, right, down;
     private double playerSpeed = 1.5f;
-    private int playerWidth = 50, playerHeight = 37;
 
-    public Player(double x, double y, double health) {
-        super(x, y, health);
+    public Player(double x, double y) {
+        super(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
     }
 
     public void resetDirBooleans() {
@@ -33,20 +32,18 @@ public class Player extends Entity {
         this.facing = facing;
     }
 
-    public int getPlayerHeight() {
-        return this.playerHeight;
-    }
-
-    public int getPlayerWidth() {
-        return this.playerWidth;
-    }
-
     public playerState getPlayerAction() {
         return this.playerAction;
     }
 
     public double getPlayerX() {
         return this.x;
+    }
+    public int getPlayerWidth(){
+        return this.width;
+    }
+    public int getPlayerHeight(){
+        return this.height;
     }
 
     public double getPlayerY() {
@@ -116,4 +113,6 @@ public class Player extends Entity {
     public double getPlayerSpeed() {
         return this.playerSpeed;
     }
+
+
 }

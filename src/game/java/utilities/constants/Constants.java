@@ -13,6 +13,8 @@ public class Constants {
     }
 
     public static class PlayerConstants {
+        public static final int PLAYER_WIDTH = 50;
+        public static final int PLAYER_HEIGHT = 37;
         public enum Facing {
             LEFT, RIGHT
         }
@@ -44,25 +46,25 @@ public class Constants {
             }
         }
 
-        public static int getSpriteAmount(playerState p) {
-            return spriteAmounts.get(p.toString());
-        }
+//        public static int getSpriteAmount(playerState p) {
+//            return spriteAmounts.get(p.toString());
+//        }
 
         public static int getSpriteAmount(String s) {
             return spriteAmounts.get(s);
         }
 
-        public static String getSpritePath(playerState p, int index) {
-            return animationPaths.get(p.toString()) + index + extension;
-        }
+//        public static String getSpritePath(playerState p, int index) {
+//            return animationPaths.get(p.toString()) + index + extension;
+//        }
 
         public static String getSpritePath(String s, int index) {
             return animationPaths.get(s) + index + extension;
         }
 
-        public static int getAnimationIndex(playerState p) {
-            return animationIndex.get(p.toString());
-        }
+//        public static int getAnimationIndex(playerState p) {
+//            return animationIndex.get(p.toString());
+//        }
 
         public static int getAnimationIndex(String s) {
             return animationIndex.get(s);
