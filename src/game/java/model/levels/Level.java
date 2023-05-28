@@ -14,18 +14,7 @@ public class Level {
         this.levelLayout = levelLayout;
     }
 
-    public static int[][] getLevel(String path) {
-        BufferedImage image = importImg(path);
-        int[][] layout = new int[Game.HEIGHT][Game.WIDTH];
-        for (int i = 0; i < Game.HEIGHT; i++) {
-            for (int j = 0; j < Game.WIDTH; j++) {
-                Color color = new Color(image.getRGB(j, i));
-                if (color.getRed() >= 180) layout[i][j] = 0;
-                else layout[i][j] = color.getRed();
-            }
-        }
-        return layout;
-    }
+
 
     public Level() {
         this.levelLayout = new int[][]{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
