@@ -1,0 +1,10 @@
+{
+  "ATTACK_2": "/animations/player/attack2/adventurer-attack2-0",
+  "ATTACK_1": "/animations/player/attack1/adventurer-attack1-0",
+  "DIE": "/animations/player/die/adventurer-die-0",
+  "FALLING": "/animations/player/fall/adventurer-fall-0",
+  "HIT": "/animations/player/hurt/adventurer-hurt-0",
+  "IDLE": "/animations/player/idle/adventurer-idle-2-0",
+  "JUMP": "/animations/player/jump/adventurer-jump-0",
+  "RUNNING": "/animations/player/run/adventurer-run-0"
+}

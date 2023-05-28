@@ -1,4 +1,4 @@
-package controller;
+package controller.inputs;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

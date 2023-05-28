@@ -1,13 +1,15 @@
 package model.entities;
 
-import static utilities.constans.Constants.PlayerConstants.*;
+import utilities.constants.Constants;
+
+import static utilities.constants.Constants.PlayerConstants.*;
+import static utilities.constants.Constants.PlayerConstants.playerState.*;
 
 public class Player extends Entity {
-    private int playerAction = IDLE;
+    private playerState playerAction = IDLE;
     private boolean moving = false, attacking = false;
     private boolean left, up, right, down;
     private double playerSpeed = 1.5f;
-
     private int playerWidth = 50, playerHeight = 37;
 
     public Player(double x, double y, double health) {
@@ -19,12 +21,15 @@ public class Player extends Entity {
         right = false;
         up = false;
         down = false;
+        moving = false;
+        attacking = false;
     }
-    public Facing getFacing(){
+
+    public Facing getFacing() {
         return this.facing;
     }
 
-    public void setFacing(Facing facing){
+    public void setFacing(Constants.PlayerConstants.Facing facing) {
         this.facing = facing;
     }
 
@@ -36,15 +41,15 @@ public class Player extends Entity {
         return this.playerWidth;
     }
 
-    public int getPlayerAction(){
+    public playerState getPlayerAction() {
         return this.playerAction;
     }
 
-    public double getPlayerX(){
+    public double getPlayerX() {
         return this.x;
     }
 
-    public double getPlayerY(){
+    public double getPlayerY() {
         return this.y;
     }
 
@@ -84,7 +89,7 @@ public class Player extends Entity {
         this.down = down;
     }
 
-    public void setPlayerAction(int playerAction) {
+    public void setPlayerAction(playerState playerAction) {
         this.playerAction = playerAction;
     }
 
@@ -100,15 +105,15 @@ public class Player extends Entity {
         return this.attacking;
     }
 
-    public void setPlayerX(int x){
+    public void setPlayerX(int x) {
         this.x = x;
     }
 
-    public void setPlayerY(int y){
+    public void setPlayerY(int y) {
         this.y = y;
     }
 
-    public double getPlayerSpeed(){
+    public double getPlayerSpeed() {
         return this.playerSpeed;
     }
 }

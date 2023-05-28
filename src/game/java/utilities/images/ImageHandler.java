@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class ImageHandler {
-    public static BufferedImage importImg(String path){
+    public static BufferedImage importImg(String path) {
         InputStream is = ImageHandler.class.getResourceAsStream(path);
         try {
             return ImageIO.read(is);
@@ -24,7 +24,7 @@ public class ImageHandler {
         return null;
     }
 
-    public static BufferedImage reflectImg(BufferedImage img){
+    public static BufferedImage reflectImg(BufferedImage img) {
         AffineTransform transform = AffineTransform.getScaleInstance(-1, 1);
         transform.translate(-img.getWidth(null), 0);
         AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);

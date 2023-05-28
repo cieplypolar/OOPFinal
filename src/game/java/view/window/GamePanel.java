@@ -4,11 +4,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
-import controller.KeyboardInputs;
-import controller.MouseInputs;
-import loop.Game;
-
-import static utilities.constans.Constants.View.SCALE;
+import controller.inputs.KeyboardInputs;
+import controller.inputs.MouseInputs;
+import controller.loop.Game;
 
 public class GamePanel extends JPanel {
 

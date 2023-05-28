@@ -1,4 +1,4 @@
-package loop;
+package controller.loop;
 
 import view.level.LevelManager;
 import view.player.PlayerManager;
@@ -7,7 +7,7 @@ import view.window.GameWindow;
 
 import java.awt.*;
 
-import static utilities.constans.Constants.View.SCALE;
+import static utilities.constants.Constants.View.SCALE;
 
 public class Game implements Runnable {
 
@@ -18,10 +18,11 @@ public class Game implements Runnable {
     private final int UPS_SET = 200;
     public final static int HEIGHT = 10;
     public final static int WIDTH = 20;
-    public final static int GAME_HEIGHT = HEIGHT*32*SCALE;
-    public final static int GAME_WIDTH = WIDTH*32*SCALE;
+    public final static int GAME_HEIGHT = HEIGHT * 32 * SCALE;
+    public final static int GAME_WIDTH = WIDTH * 32 * SCALE;
     private PlayerManager player;
     private LevelManager level;
+
     public Game() {
         initClasses();
 
@@ -34,7 +35,7 @@ public class Game implements Runnable {
 
     private void initClasses() {
         player = new PlayerManager(100, 100, 100);
-        level=new LevelManager(this);
+        level = new LevelManager(this);
     }
 
     private void startGameLoop() {
@@ -61,9 +62,11 @@ public class Game implements Runnable {
     public PlayerManager getPlayerManager() {
         return player;
     }
-    public LevelManager getLevelManager(){
+
+    public LevelManager getLevelManager() {
         return level;
     }
+
     @Override
     public void run() {
 

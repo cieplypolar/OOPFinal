@@ -1,0 +1,10 @@
+{
+  "IDLE": 0,
+  "RUNNING": 1,
+  "JUMP": 2,
+  "FALLING": 3,
+  "HIT": 4,
+  "ATTACK_1": 5,
+  "ATTACK_2": 6,
+  "DIE": 7
+}
