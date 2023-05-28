@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import static utilities.constants.Constants.PlayerConstants.*;
 import static utilities.constants.Constants.PlayerConstants.playerState.*;
 import static utilities.constants.Constants.View.SCALE;
-import static utilities.helpers.PlayerHelperMethods.CanMoveHere;
+import static utilities.helpers.PlayerHelperMethods.canMoveHere;
 import static utilities.images.ImageHandler.reflectImg;
 import static utilities.loaders.PlayerLoader.loadPlayerAnimations;
 
@@ -27,7 +27,6 @@ public class PlayerManager {
 
     public void update() {
         updatePos();
-        player.updateHitBox();
         updateAnimationTick();
         setAnimation();
     }
@@ -71,26 +70,40 @@ public class PlayerManager {
         if (!player.isLeft() && !player.isRight() && !player.isUp() && !player.isDown())
             return;
 
-        double xTemp = 0, yTemp = 0;
+        float xTemp = 0, yTemp = 0;
 
-        if (player.isLeft() && !player.isRight() && !player.isAttacking())
+        if (player.isLeft() && !player.isRight() && !player.isAttacking()) {
+            player.setFacing(Facing.LEFT);
             xTemp = -player.getPlayerSpeed();
-        else if (player.isRight() && !player.isLeft() && !player.isAttacking())
+        }
+        else if (player.isRight() && !player.isLeft() && !player.isAttacking()) {
+            player.setFacing(Facing.RIGHT);
             xTemp = player.getPlayerSpeed();
+        }
+        else if (player.isRight() && player.isLeft() && !player.isAttacking()) return;
+
+        if (canMoveHere(player.getHitBox().x + xTemp, player.getHitBox().y, player.getHitBox().width, player.getHitBox().height, game.getLevelManager().getLevel().getLevelLayout())) {
+            player.getHitBox().x += xTemp;
+            player.setMoving(true);
+        }
 
         if (player.isUp() && !player.isDown() && !player.isAttacking())
             yTemp = -player.getPlayerSpeed();
         else if (player.isDown() && !player.isUp() && !player.isAttacking())
             yTemp = player.getPlayerSpeed();
-        if (CanMoveHere(player.getPlayerX() + xTemp, player.getPlayerY() + yTemp, player.getPlayerWidth(), player.getPlayerHeight(), game.getLevelManager().getLevel().getLevelLayout())) {
-			player.setPlayerX((int) (player.getPlayerX() + xTemp));
-			player.setPlayerY((int) (player.getPlayerY() + yTemp));
+        else if (player.isDown() && player.isUp() && !player.isAttacking()) return;
+
+
+        if (canMoveHere(player.getHitBox().x, player.getHitBox().y + yTemp, player.getHitBox().width, player.getHitBox().height, game.getLevelManager().getLevel().getLevelLayout())) {
+			player.getHitBox().y += yTemp;
 			player.setMoving(true);
 		}
     }
 
     public void render(Graphics g) {
-        g.drawImage(((this.player.getFacing() == Facing.RIGHT) ? animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex] : reflectImg(animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex])), (int) this.player.getPlayerX(), (int) this.player.getPlayerY(), PLAYER_WIDTH * SCALE, PLAYER_HEIGHT * SCALE, null);
+        g.drawImage(((this.player.getFacing() == Facing.RIGHT) ? animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex] : reflectImg(animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex])),
+                (int)(this.player.getHitBox().x - xOffSet * SCALE), (int)(this.player.getHitBox().y - yOffset * SCALE),
+                PLAYER_WIDTH * SCALE, PLAYER_HEIGHT * SCALE, null);
         player.drawHitBox(g);
     }
 

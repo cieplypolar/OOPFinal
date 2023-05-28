@@ -4,15 +4,16 @@ import utilities.constants.Constants;
 
 import static utilities.constants.Constants.PlayerConstants.*;
 import static utilities.constants.Constants.PlayerConstants.playerState.*;
+import static utilities.constants.Constants.View.SCALE;
 
 public class Player extends Entity {
     private playerState playerAction = IDLE;
     private boolean moving = false, attacking = false;
     private boolean left, up, right, down;
-    private double playerSpeed = 1.5f;
-
-    public Player(double x, double y) {
-        super(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
+    private float playerSpeed = 1.5f;
+    public Player(float x, float y) {
+        super(x, y, REAL_PLAYER_WIDTH * SCALE, REAL_PLAYER_HEIGHT * SCALE);
+        initHitBox(x, y, REAL_PLAYER_WIDTH * SCALE, REAL_PLAYER_HEIGHT * SCALE);
     }
 
     public void resetDirBooleans() {
@@ -36,7 +37,7 @@ public class Player extends Entity {
         return this.playerAction;
     }
 
-    public double getPlayerX() {
+    public float getPlayerX() {
         return this.x;
     }
     public int getPlayerWidth(){
@@ -46,7 +47,7 @@ public class Player extends Entity {
         return this.height;
     }
 
-    public double getPlayerY() {
+    public float getPlayerY() {
         return this.y;
     }
 
@@ -110,7 +111,7 @@ public class Player extends Entity {
         this.y = y;
     }
 
-    public double getPlayerSpeed() {
+    public float getPlayerSpeed() {
         return this.playerSpeed;
     }
 

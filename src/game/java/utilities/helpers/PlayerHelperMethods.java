@@ -2,20 +2,22 @@ package utilities.helpers;
 
 import controller.loop.Game;
 
+import static utilities.constants.Constants.View.SCALE;
+
 public class PlayerHelperMethods {
-    public static boolean CanMoveHere(double x, double y, double width, double height, int[][] lvlData) {
+    public static boolean canMoveHere(float x, float y, float width, float height, int[][] lvlData) {
         return !isSolid(x, y, lvlData) && !isSolid(x + width, y + height, lvlData)
                 && !isSolid(x + width, y, lvlData) && !isSolid(x, y + height, lvlData);
     }
 
-    private static boolean isSolid(double x, double y, int[][] lvlData) {
-        if (x < 0 || x >= Game.GAME_WIDTH)
+    private static boolean isSolid(float x, float y, int[][] lvlData) {
+        if (x <= 0 || x >= Game.GAME_WIDTH)
             return true;
-        if (y < 0 || y >= Game.GAME_HEIGHT)
+        if (y <= 0 || y >= Game.GAME_HEIGHT)
             return true;
 
-        double xIndex = x / Game.TILES_SIZE;
-        double yIndex = y / Game.TILES_SIZE;
+        float xIndex = x / (Game.TILES_SIZE * SCALE);
+        float yIndex = y / (Game.TILES_SIZE * SCALE);
 
         int value = lvlData[(int) yIndex][(int) xIndex];
 
