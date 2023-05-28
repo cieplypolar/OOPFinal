@@ -6,7 +6,6 @@ import controller.loop.Game;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-
 import static utilities.constants.Constants.View.SCALE;
 import static utilities.images.ImageHandler.importImg;
 import static utilities.loaders.LevelLoader.loadLevel;
@@ -35,7 +34,7 @@ public class LevelManager {
     }
 
     public void draw(Graphics graphic) {
-        level.setLevelLayout(loadLevel("/test.png"));
+//        level.setLevelLayout(loadLevel("/test.png"));
         for (int i = 0; i < Game.HEIGHT; i++) {
             for (int j = 0; j < Game.WIDTH; j++) {
                 int index = i * Game.WIDTH + j;
@@ -43,9 +42,11 @@ public class LevelManager {
             }
         }
     }
-public Level getLevel (){
-        return this.level;
-}
+
     public void update() {
+    }
+
+    public Level getLevel() {
+        return level;
     }
 }
