@@ -11,6 +11,7 @@ import static utilities.constants.Constants.PlayerConstants.playerState.*;
 import static utilities.constants.Constants.View.SCALE;
 import static utilities.helpers.PlayerHelperMethods.canMoveHere;
 import static utilities.helpers.PlayerHelperMethods.isOnGround;
+import static utilities.images.ImageHandler.importImg;
 import static utilities.images.ImageHandler.reflectImg;
 import static utilities.loaders.PlayerLoader.loadPlayerAnimations;
 
@@ -54,6 +55,9 @@ public class PlayerManager {
         }
         if (this.player.isAttacking()) {
             this.player.setPlayerAction(ATTACK_1);
+        }
+        if (this.player.isInAir()){
+            this.player.setPlayerAction(FALLING);
         }
         if (startAni != this.player.getPlayerAction()) {
             resetAniTick();
@@ -122,11 +126,11 @@ public class PlayerManager {
         player.setInAir(true);
     }
 
-    public void render(Graphics g) {
+    public void render(Graphics g, int lvlOffset) {
         g.drawImage(((this.player.getFacing() == Facing.RIGHT) ? animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex] : reflectImg(animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex])),
-                (int) (this.player.getHitBox().x - xOffSet * SCALE), (int) (this.player.getHitBox().y - yOffset * SCALE),
+                (int) (this.player.getHitBox().x - xOffSet * SCALE) - lvlOffset, (int) (this.player.getHitBox().y - yOffset * SCALE),
                 PLAYER_WIDTH * SCALE, PLAYER_HEIGHT * SCALE, null);
-        player.drawHitBox(g);
+        player.drawHitBox(g, lvlOffset);
     }
 
     public Player getPlayer() {

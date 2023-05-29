@@ -27,9 +27,9 @@ public abstract class Entity {
         hitBox = new Rectangle2D.Float(x, y, width, height);
     }
 
-    public void drawHitBox(Graphics g) {
+    public void drawHitBox(Graphics g, int lvlOffset) {
         g.setColor(Color.CYAN);
-        g.drawRect((int) hitBox.x, (int) hitBox.y, (int) hitBox.width, (int) hitBox.height);
+        g.drawRect((int) hitBox.x - lvlOffset, (int) hitBox.y, (int) hitBox.width, (int) hitBox.height);
     }
 
     public Rectangle2D.Float getHitBox() {

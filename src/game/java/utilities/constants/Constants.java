@@ -6,12 +6,10 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Set;
 
-import static utilities.constants.Constants.View.SCALE;
-
 public class Constants {
 
     public static class View {
-        public static final int SCALE = 2;
+        public static final int SCALE = 1;
     }
 
     public static class PlayerConstants {

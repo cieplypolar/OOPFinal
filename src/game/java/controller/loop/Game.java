@@ -8,6 +8,7 @@ import view.window.GameWindow;
 import java.awt.*;
 
 import static utilities.constants.Constants.View.SCALE;
+import static utilities.images.ImageHandler.importImg;
 
 public class Game implements Runnable {
 
@@ -24,6 +25,13 @@ public class Game implements Runnable {
     private PlayerManager player;
     private LevelManager level;
 
+    private int xLvlOffset;
+    private int letfBorder = (int) (0.2 * Game.GAME_HEIGHT);
+    private int rightBorder = (int) (0.8 * Game.GAME_WIDTH);
+    private int lvlTilesWidth = importImg("/level.graphics/biglevel.png").getWidth();
+    private int maxTilesOffset = lvlTilesWidth - Game.WIDTH;
+    private int maxLvlOffser = maxTilesOffset * Game.TILES_SIZE * SCALE;
+
     public Game() {
         initClasses();
 
@@ -35,7 +43,7 @@ public class Game implements Runnable {
     }
 
     private void initClasses() {
-        player = new PlayerManager(this,100, 100);
+        player = new PlayerManager(this, 100, 100);
         level = new LevelManager(this);
     }
 
@@ -47,12 +55,30 @@ public class Game implements Runnable {
     public void update() {
         level.update();
         player.update();
+        checkCloseToBorder();
 
     }
 
+    private void checkCloseToBorder() {
+        int playerX = (int) player.getPlayer().getHitBox().x;
+        int diff = playerX - xLvlOffset;
+        if (diff > rightBorder) {
+            xLvlOffset += diff - rightBorder;
+        } else if (diff < letfBorder) {
+            xLvlOffset += diff - letfBorder;
+        }
+
+        if (xLvlOffset > maxLvlOffser) {
+            xLvlOffset = maxLvlOffser;
+        } else if (xLvlOffset < 0) {
+            xLvlOffset = 0;
+
+        }
+    }
+
     public void render(Graphics g) {
-        level.draw(g);
-        player.render(g);
+        level.draw(g, xLvlOffset);
+        player.render(g, xLvlOffset);
 
     }
 

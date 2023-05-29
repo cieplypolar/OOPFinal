@@ -1,12 +1,4 @@
 package model.levels;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
-import static utilities.images.ImageHandler.importImg;
-
-import controller.loop.Game;
-
 public class Level {
     private int[][] levelLayout;
 

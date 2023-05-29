@@ -33,12 +33,11 @@ public class LevelManager {
         }
     }
 
-    public void draw(Graphics graphic) {
-//        level.setLevelLayout(loadLevel("/test.png"));
+    public void draw(Graphics graphic, int lvlOffset) {
+        level.setLevelLayout(loadLevel("/level.graphics/biglevel.png"));
         for (int i = 0; i < Game.HEIGHT; i++) {
-            for (int j = 0; j < Game.WIDTH; j++) {
-                int index = i * Game.WIDTH + j;
-                graphic.drawImage(levelImage[level.getLevelLayout()[i][j]], 32 * SCALE * j, 32 * SCALE * i, 32 * SCALE, 32 * SCALE, null);
+            for (int j = 0; j < level.getLevelLayout()[0].length; j++) {
+                graphic.drawImage(levelImage[level.getLevelLayout()[i][j]], Game.TILES_SIZE * SCALE * j - lvlOffset, 32 * SCALE * i, 32 * SCALE, 32 * SCALE, null);
             }
         }
     }

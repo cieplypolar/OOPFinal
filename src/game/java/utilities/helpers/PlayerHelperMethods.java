@@ -19,9 +19,9 @@ public class PlayerHelperMethods {
     }
 
     private static boolean isSolid(float x, float y, int[][] lvlData) {
-        if (x <= 0 || x >= Game.GAME_WIDTH)
+        if (x <= 0 || x >= lvlData[0].length * Game.TILES_SIZE * SCALE)
             return true;
-        if (y <= 0 || y >= Game.GAME_HEIGHT)
+        if (y <= 0 || y >= lvlData.length * Game.TILES_SIZE * SCALE)
             return true;
 
         float xIndex = x / (Game.TILES_SIZE * SCALE);
