@@ -11,14 +11,14 @@ import static utilities.constants.Constants.View.SCALE;
 public class Constants {
 
     public static class View {
-        public static final int SCALE = 1;
+        public static final int SCALE = 2;
     }
 
     public static class PlayerConstants {
         public static final int PLAYER_WIDTH = 50;
         public static final int PLAYER_HEIGHT = 37;
         public static final int REAL_PLAYER_WIDTH = 13;
-        public static final int REAL_PLAYER_HEIGHT = 27;
+        public static final int REAL_PLAYER_HEIGHT = 25;
         public static final float xOffSet = 19;
         public static final float yOffset = 11;
 

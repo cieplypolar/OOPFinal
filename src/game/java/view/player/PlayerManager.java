@@ -10,6 +10,7 @@ import static utilities.constants.Constants.PlayerConstants.*;
 import static utilities.constants.Constants.PlayerConstants.playerState.*;
 import static utilities.constants.Constants.View.SCALE;
 import static utilities.helpers.PlayerHelperMethods.canMoveHere;
+import static utilities.helpers.PlayerHelperMethods.isOnGround;
 import static utilities.images.ImageHandler.reflectImg;
 import static utilities.loaders.PlayerLoader.loadPlayerAnimations;
 
@@ -66,43 +67,64 @@ public class PlayerManager {
 
     private void updatePos() {
         player.setMoving(false);
-
-        if (!player.isLeft() && !player.isRight() && !player.isUp() && !player.isDown())
+        if (!isOnGround(player.getHitBox(), game.getLevelManager().getLevel().getLevelLayout())) player.setInAir(true);
+        if (player.isUp()) jump();
+        if (!player.isLeft() && !player.isRight() && !player.isInAir())
             return;
 
-        float xTemp = 0, yTemp = 0;
+        float xTemp = 0;
 
         if (player.isLeft() && !player.isRight() && !player.isAttacking()) {
             player.setFacing(Facing.LEFT);
             xTemp = -player.getPlayerSpeed();
-        }
-        else if (player.isRight() && !player.isLeft() && !player.isAttacking()) {
+
+        } else if (player.isRight() && !player.isLeft() && !player.isAttacking()) {
             player.setFacing(Facing.RIGHT);
             xTemp = player.getPlayerSpeed();
-        }
-        else if (player.isRight() && player.isLeft() && !player.isAttacking()) return;
 
+        }
+
+        if (player.isInAir()) {
+            if (canMoveHere(player.getHitBox().x, player.getHitBox().y + player.getPlayerAirSpeed(), player.getHitBox().width, player.getHitBox().height, game.getLevelManager().getLevel().getLevelLayout())) {
+                player.getHitBox().y += player.getPlayerAirSpeed();
+                player.setPlayerAirSpeed(player.getGravity() + player.getPlayerAirSpeed());
+                updateXPos(xTemp);
+            } else {
+                if (player.getPlayerAirSpeed() > 0) {
+                    player.setPlayerAirSpeed(0f);
+                    player.setInAir(false);
+                } else {
+                    player.setPlayerAirSpeed(player.getfallSpeedCollision());
+                }
+                updateXPos(xTemp);
+            }
+
+
+        } else {
+            updateXPos(xTemp);
+        }
+
+        player.setMoving(true);
+
+
+    }
+
+    private void updateXPos(float xTemp) {
         if (canMoveHere(player.getHitBox().x + xTemp, player.getHitBox().y, player.getHitBox().width, player.getHitBox().height, game.getLevelManager().getLevel().getLevelLayout())) {
             player.getHitBox().x += xTemp;
             player.setMoving(true);
         }
+    }
 
-        if (player.isUp() && !player.isDown() && !player.isAttacking())
-            yTemp = -player.getPlayerSpeed();
-        else if (player.isDown() && !player.isUp() && !player.isAttacking())
-            yTemp = player.getPlayerSpeed();
-        else if (player.isDown() && player.isUp() && !player.isAttacking()) return;
-
-
-        if (canMoveHere(player.getHitBox().x, player.getHitBox().y + yTemp, player.getHitBox().width, player.getHitBox().height, game.getLevelManager().getLevel().getLevelLayout())) {
-			player.getHitBox().y += yTemp;
-			player.setMoving(true);
-		}
+    private void jump() {
+        if (player.isInAir()) return;
+        player.setPlayerAirSpeed(player.getJumpSpeed());
+        player.setInAir(true);
     }
 
     public void render(Graphics g) {
         g.drawImage(((this.player.getFacing() == Facing.RIGHT) ? animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex] : reflectImg(animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex])),
-                (int)(this.player.getHitBox().x - xOffSet * SCALE), (int)(this.player.getHitBox().y - yOffset * SCALE),
+                (int) (this.player.getHitBox().x - xOffSet * SCALE), (int) (this.player.getHitBox().y - yOffset * SCALE),
                 PLAYER_WIDTH * SCALE, PLAYER_HEIGHT * SCALE, null);
         player.drawHitBox(g);
     }

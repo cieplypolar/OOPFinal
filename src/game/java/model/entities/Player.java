@@ -9,8 +9,13 @@ import static utilities.constants.Constants.View.SCALE;
 public class Player extends Entity {
     private playerState playerAction = IDLE;
     private boolean moving = false, attacking = false;
-    private boolean left, up, right, down;
+    private boolean left, right, up, down, jump;
     private float playerSpeed = 1.5f;
+    private float airSpeed = 0f;
+    private float gravity = 0.04f*SCALE;
+    private float jumpSpeed = -2.0f*SCALE;
+    private float fallSpeedCollision = 0.6f*SCALE;
+    private boolean inAir = false;
     public Player(float x, float y) {
         super(x, y, REAL_PLAYER_WIDTH * SCALE, REAL_PLAYER_HEIGHT * SCALE);
         initHitBox(x, y, REAL_PLAYER_WIDTH * SCALE, REAL_PLAYER_HEIGHT * SCALE);
@@ -75,6 +80,12 @@ public class Player extends Entity {
         return right;
     }
 
+    public boolean isInAir(){
+        return inAir;
+    }
+    public void setInAir(boolean s){
+        this.inAir=s;
+    }
     public void setRight(boolean right) {
         this.right = right;
     }
@@ -114,6 +125,19 @@ public class Player extends Entity {
     public float getPlayerSpeed() {
         return this.playerSpeed;
     }
-
-
+    public float getPlayerAirSpeed(){
+        return this.airSpeed;
+    }
+    public void setPlayerAirSpeed(float f){
+       this.airSpeed=f;
+    }
+public float getGravity(){
+        return this.gravity;
+}
+public float getfallSpeedCollision(){
+        return this.fallSpeedCollision;
+}
+    public float getJumpSpeed(){
+        return this.jumpSpeed;
+    }
 }
