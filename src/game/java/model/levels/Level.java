@@ -1,6 +1,6 @@
 package model.levels;
 
-public class Level {
+public class  Level {
     private int[][] levelLayout;
 
     public Level(int[][] levelLayout) {

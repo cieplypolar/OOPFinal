@@ -1,6 +1,7 @@
 package GameStates;
 
 import controller.game.LevelManager;
+import controller.game.ObjectManager;
 import controller.game.PlayerManager;
 import controller.loop.Game;
 
@@ -12,26 +13,34 @@ import java.awt.event.MouseEvent;
 import static _utilities.constants.Constants.ViewConstants.SCALE;
 
 public class GameRun extends State implements  StateInterface {
+
     private PlayerManager player;
     private LevelManager level;
-
+    private ObjectManager objects;
     public GameRun(Game game) {
         super(game);
     }
     public void initClasses() {
         player = new PlayerManager(this.game, 200 * SCALE, 1152 * SCALE);
         level = new LevelManager(this.game);
+        objects = new ObjectManager(this.game);
     }
 
     @Override
     public void update() {
         level.update();
         player.update();
+        objects.update();
     }
 
     @Override
     public void render(Graphics g) {
+        int xLvlOffset=game.getxLvlOffset();
+        int yLvlOffset= game.getyLvlOffset();
 
+        level.draw(g, xLvlOffset, yLvlOffset);
+        player.getPlayerView().render(g, xLvlOffset, yLvlOffset, getPlayerManager().getAniIndex());
+        objects.draw(g, xLvlOffset, yLvlOffset);
     }
 
     @Override
@@ -122,5 +131,9 @@ public class GameRun extends State implements  StateInterface {
     }
     public LevelManager getLevelManager(){
         return level;
+    }
+
+    public ObjectManager getObjectManager() {
+        return objects;
     }
 }

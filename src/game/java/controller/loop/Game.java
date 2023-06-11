@@ -3,6 +3,7 @@ package controller.loop;
 import GameStates.GameRun;
 import GameStates.GameState;
 import controller.game.LevelManager;
+import controller.game.ObjectManager;
 import controller.game.PlayerManager;
 import view.window.GamePanel;
 import view.window.GameWindow;
@@ -21,6 +22,14 @@ public class Game implements Runnable {
     private final int UPS_SET = 200;
     private GameRun gamerun;
     private Menu menu;
+
+    public int getxLvlOffset() {
+        return xLvlOffset;
+    }
+
+    public int getyLvlOffset() {
+        return yLvlOffset;
+    }
 
     private int xLvlOffset;
     private int letfBorder = (int) (0.2 * GAME_WIDTH);
@@ -106,8 +115,7 @@ public class Game implements Runnable {
                 menu.render(g);
             }
             case GAMERUN -> {
-                gamerun.getLevelManager().draw(g, xLvlOffset, yLvlOffset);
-                gamerun.getPlayerManager().getPlayerView().render(g, xLvlOffset, yLvlOffset, getPlayerManager().getAniIndex());
+                gamerun.render(g);
             }
         }
 
@@ -124,6 +132,9 @@ public class Game implements Runnable {
 
     public LevelManager getLevelManager() {
         return gamerun.getLevelManager();
+    }
+    public ObjectManager getObjectManager(){
+        return gamerun.getObjectManager();
     }
     public GameRun getGameRun(){return gamerun;}
     @Override

@@ -8,7 +8,7 @@ import java.awt.geom.Rectangle2D;
 public abstract class Entity {
     protected float x;
     protected float y;
-    protected float health;
+    protected int health;
     protected int width, height;
     protected Rectangle2D.Float hitBox;
 

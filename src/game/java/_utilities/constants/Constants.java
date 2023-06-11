@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Set;
 
+import static _utilities.constants.Constants.ViewConstants.SCALE;
+
 public class Constants {
     public static class GameConstants {
     }
@@ -13,7 +15,37 @@ public class Constants {
     public static class LevelConstants {
 
     }
+    public static class ObjectConstants {
+        public static final int CRATE =0;
+        public static final int BARREL = 1;
+        public static final int HEART = 2;
 
+        public static final int CONTAINER_WIDTH_DEFAULT = 40;
+        public static final int CONTAINER_HEIGHT_DEFAULT = 30;
+        public static final int CONTAINER_WIDTH = (int) (SCALE * CONTAINER_WIDTH_DEFAULT);
+        public static final int CONTAINER_HEIGHT = (int) (SCALE * CONTAINER_HEIGHT_DEFAULT);
+
+        public static final int CRATE_X_OFFSET=7;
+        public static final int CRATE_Y_OFFSET=12;
+        public static final int BARREL_X_OFFSET=8;
+        public static final int BARREL_Y_OFFSET=5;
+
+        public static final int HEART_WIDTH_DEFAULT = 14;
+        public static final int HEART_HEIGHT_DEFAULT = 14;
+        public static final int HEART_WIDTH = (int) (SCALE * HEART_WIDTH_DEFAULT);
+        public static final int HEART_HEIGHT = (int) (SCALE * HEART_HEIGHT_DEFAULT);
+
+        public static int getSpriteAmount(int object_type) {
+            switch (object_type) {
+                case HEART:
+                    return 5;
+                case BARREL, CRATE:
+                    return 8;
+            }
+            return 1;
+        }
+
+    }
     public static class ViewConstants {
         public static final int SCALE = 2;
         public final static int HEIGHT_IN_TILES = 10;

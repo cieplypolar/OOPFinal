@@ -23,6 +23,8 @@ public class PlayerManager {
 
     public void update() {
         updatePos();
+        if(player.isMoving())game.getObjectManager().checkIfTouched(player.getHitBox());
+        if(player.isAttacking())game.getObjectManager().checkIfHit(player.getHitBox());
         updateAnimationTick();
         setAnimation();
     }

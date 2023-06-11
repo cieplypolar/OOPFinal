@@ -20,6 +20,7 @@ public class Player extends Entity {
     public Player(float x, float y) {
         super(x, y, REAL_PLAYER_WIDTH * SCALE, REAL_PLAYER_HEIGHT * SCALE);
         initHitBox(x, y, REAL_PLAYER_WIDTH * SCALE, REAL_PLAYER_HEIGHT * SCALE);
+        health=3;
     }
 
     public void resetDirBooleans() {
@@ -149,5 +150,13 @@ public class Player extends Entity {
 
     public float getJumpSpeed() {
         return this.jumpSpeed;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health=health;
     }
 }
