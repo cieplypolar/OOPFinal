@@ -1,11 +1,9 @@
-package utilities.loaders;
-
-import controller.loop.Game;
+package _utilities.loaders;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static utilities.images.ImageHandler.importImg;
+import static _utilities.loaders.ImageHandler.importImg;
 
 public class LevelLoader {
     public static int[][] loadLevel(String path) {

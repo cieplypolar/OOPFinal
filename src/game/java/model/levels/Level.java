@@ -1,7 +1,5 @@
 package model.levels;
 
-import controller.loop.Game;
-
 public class Level {
     private int[][] levelLayout;
 
@@ -11,7 +9,7 @@ public class Level {
 
 
     public Level() {
-        this.levelLayout = new int[Game.GAME_HEIGHT][Game.GAME_WIDTH];
+        this.levelLayout = new int[1][1];
     }
 
     public int[][] getLevelLayout() {

@@ -8,7 +8,9 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import static GameStates.GameState.*;
-import static utilities.images.ImageHandler.importImg;
+import static _utilities.constants.Constants.ViewConstants.GAME_HEIGHT;
+import static _utilities.constants.Constants.ViewConstants.GAME_WIDTH;
+import static _utilities.loaders.ImageHandler.importImg;
 
 public class Menu extends State implements StateInterface{
 
@@ -19,9 +21,9 @@ MenuButton[] buttons = new MenuButton[3];
     public Menu(Game game) {
         super(game);
         menubackground = importImg("/menugraphics/menu.png");
-        buttons[0]= new MenuButton(Game.GAME_WIDTH/2, 200, 0,GAMERUN);
-        buttons[1]= new MenuButton(Game.GAME_WIDTH/2, 300, 1,QUIT);
-        buttons[2]= new MenuButton(Game.GAME_WIDTH/2, 400, 2,QUIT);
+        buttons[0]= new MenuButton(GAME_WIDTH/2, 200, 0,GAMERUN);
+        buttons[1]= new MenuButton(GAME_WIDTH/2, 300, 1,QUIT);
+        buttons[2]= new MenuButton(GAME_WIDTH/2, 400, 2,QUIT);
     }
     @Override
     public void update(){
@@ -30,7 +32,7 @@ MenuButton[] buttons = new MenuButton[3];
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(menubackground,0,0,Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
+        g.drawImage(menubackground,0,0,GAME_WIDTH, GAME_HEIGHT, null);
         for(MenuButton button : buttons)button.draw(g);
     }
     public boolean isOver(MouseEvent e, MenuButton button){

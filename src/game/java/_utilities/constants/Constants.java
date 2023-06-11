@@ -1,4 +1,4 @@
-package utilities.constants;
+package _utilities.constants;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -7,9 +7,20 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class Constants {
+    public static class GameConstants {
+    }
 
-    public static class View {
+    public static class LevelConstants {
+
+    }
+
+    public static class ViewConstants {
         public static final int SCALE = 2;
+        public final static int HEIGHT_IN_TILES = 10;
+        public final static int WIDTH_IN_TILES = 20;
+        public final static int TILES_SIZE = 32;
+        public final static int GAME_HEIGHT = HEIGHT_IN_TILES * TILES_SIZE * SCALE;
+        public final static int GAME_WIDTH = WIDTH_IN_TILES * TILES_SIZE * SCALE;
     }
 
     public static class PlayerConstants {
@@ -51,25 +62,13 @@ public class Constants {
             }
         }
 
-//        public static int getSpriteAmount(playerState p) {
-//            return spriteAmounts.get(p.toString());
-//        }
-
         public static int getSpriteAmount(String s) {
             return spriteAmounts.get(s);
         }
 
-//        public static String getSpritePath(playerState p, int index) {
-//            return animationPaths.get(p.toString()) + index + extension;
-//        }
-
         public static String getSpritePath(String s, int index) {
             return animationPaths.get(s) + index + extension;
         }
-
-//        public static int getAnimationIndex(playerState p) {
-//            return animationIndex.get(p.toString());
-//        }
 
         public static int getAnimationIndex(String s) {
             return animationIndex.get(s);

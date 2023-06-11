@@ -1,4 +1,4 @@
-package main;
+package _main;
 
 import controller.loop.Game;
 

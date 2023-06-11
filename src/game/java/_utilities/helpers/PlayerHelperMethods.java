@@ -1,10 +1,11 @@
-package utilities.helpers;
+package _utilities.helpers;
 
 import controller.loop.Game;
 
 import java.awt.geom.Rectangle2D;
 
-import static utilities.constants.Constants.View.SCALE;
+import static _utilities.constants.Constants.ViewConstants.*;
+
 
 public class PlayerHelperMethods {
     public static boolean canMoveHere(float x, float y, float width, float height, int[][] lvlData) {
@@ -19,13 +20,13 @@ public class PlayerHelperMethods {
     }
 
     private static boolean isSolid(float x, float y, int[][] lvlData) {
-        if (x <= 0 || x >= lvlData[0].length * Game.TILES_SIZE * SCALE)
+        if (x <= 0 || x >= lvlData[0].length * TILES_SIZE * SCALE)
             return true;
-        if (y <= 0 || y >= lvlData.length * Game.TILES_SIZE * SCALE)
+        if (y <= 0 || y >= lvlData.length * TILES_SIZE * SCALE)
             return true;
 
-        float xIndex = x / (Game.TILES_SIZE * SCALE);
-        float yIndex = y / (Game.TILES_SIZE * SCALE);
+        float xIndex = x / (TILES_SIZE * SCALE);
+        float yIndex = y / (TILES_SIZE * SCALE);
 
         int value = lvlData[(int) yIndex][(int) xIndex];
         if(value == 117)return false;

@@ -1,9 +1,9 @@
-package utilities.loaders;
+package _utilities.loaders;
 
 import java.awt.image.BufferedImage;
 
-import static utilities.constants.Constants.PlayerConstants.*;
-import static utilities.images.ImageHandler.importImg;
+import static _utilities.constants.Constants.PlayerConstants.*;
+import static _utilities.loaders.ImageHandler.importImg;
 
 public class PlayerLoader {
     public static BufferedImage[][] loadPlayerAnimations() {

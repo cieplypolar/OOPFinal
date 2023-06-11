@@ -2,15 +2,15 @@ package controller.loop;
 
 import GameStates.GameRun;
 import GameStates.GameState;
-import view.level.LevelManager;
-import view.player.PlayerManager;
+import controller.game.LevelManager;
+import controller.game.PlayerManager;
 import view.window.GamePanel;
 import view.window.GameWindow;
 import GameStates.Menu;
 import java.awt.*;
 
-import static utilities.constants.Constants.View.SCALE;
-import static utilities.images.ImageHandler.importImg;
+import static _utilities.constants.Constants.ViewConstants.*;
+import static _utilities.loaders.ImageHandler.importImg;
 
 public class Game implements Runnable {
 
@@ -19,20 +19,21 @@ public class Game implements Runnable {
     private Thread gameThread;
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
-    public final static int HEIGHT = 10;
-    public final static int WIDTH = 20;
-    public final static int TILES_SIZE = 32;
-    public final static int GAME_HEIGHT = HEIGHT * TILES_SIZE * SCALE;
-    public final static int GAME_WIDTH = WIDTH * TILES_SIZE * SCALE;
     private GameRun gamerun;
     private Menu menu;
 
     private int xLvlOffset;
-    private int letfBorder = (int) (0.2 * Game.GAME_HEIGHT);
-    private int rightBorder = (int) (0.8 * Game.GAME_WIDTH);
-    private int lvlTilesWidth = importImg("/level.graphics/biglevel.png").getWidth();
-    private int maxTilesOffset = lvlTilesWidth - Game.WIDTH;
-    private int maxLvlOffser = maxTilesOffset * Game.TILES_SIZE * SCALE;
+    private int letfBorder = (int) (0.2 * GAME_WIDTH);
+    private int rightBorder = (int) (0.8 * GAME_WIDTH);
+    private int lvlTilesWidth = importImg("/level.graphics/bigggglvl.png").getWidth();
+    private int maxTilesOffsetHor = lvlTilesWidth - WIDTH_IN_TILES;
+    private int maxLvlOffsetHor = maxTilesOffsetHor * TILES_SIZE * SCALE;
+    private int yLvlOffset;
+    private int upBorder = (int) (0.2 * GAME_HEIGHT);
+    private int downBorder = (int) (0.8 * GAME_HEIGHT);
+    private int lvlTilesHeight = importImg("/level.graphics/bigggglvl.png").getHeight();
+    private int maxTilesOffsetVer = lvlTilesHeight - HEIGHT_IN_TILES;
+    private int maxLvlOffsetVer = maxTilesOffsetVer * TILES_SIZE * SCALE;
 
     public Game() {
         gamerun=new GameRun(this);
@@ -45,8 +46,6 @@ public class Game implements Runnable {
         startGameLoop();
 
     }
-
-
 
     private void startGameLoop() {
         gameThread = new Thread(this);
@@ -73,18 +72,30 @@ public class Game implements Runnable {
 
     private void checkCloseToBorder() {
         int playerX = (int) gamerun.getPlayerManager().getPlayer().getHitBox().x;
-        int diff = playerX - xLvlOffset;
-        if (diff > rightBorder) {
-            xLvlOffset += diff - rightBorder;
-        } else if (diff < letfBorder) {
-            xLvlOffset += diff - letfBorder;
+        int playerY = (int) gamerun.getPlayerManager().getPlayer().getHitBox().y;
+        int diffX = playerX - xLvlOffset;
+        int diffY = playerY - yLvlOffset;
+        if (diffX > rightBorder) {
+            xLvlOffset += diffX - rightBorder;
+        } else if (diffX < letfBorder) {
+            xLvlOffset += diffX - letfBorder;
         }
 
-        if (xLvlOffset > maxLvlOffser) {
-            xLvlOffset = maxLvlOffser;
+        if (xLvlOffset > maxLvlOffsetHor) {
+            xLvlOffset = maxLvlOffsetHor;
         } else if (xLvlOffset < 0) {
             xLvlOffset = 0;
+        }
 
+        if (diffY > downBorder) {
+            yLvlOffset += diffY - downBorder;
+        } else if (diffY < upBorder) {
+            yLvlOffset += diffY - upBorder;
+        }
+        if (yLvlOffset > maxLvlOffsetVer) {
+            yLvlOffset = maxLvlOffsetVer;
+        } else if (yLvlOffset < 0) {
+            yLvlOffset = 0;
         }
     }
 
@@ -95,8 +106,8 @@ public class Game implements Runnable {
                 menu.render(g);
             }
             case GAMERUN -> {
-                gamerun.getLevelManager().draw(g, xLvlOffset);
-                gamerun.getPlayerManager().render(g, xLvlOffset);
+                gamerun.getLevelManager().draw(g, xLvlOffset, yLvlOffset);
+                gamerun.getPlayerManager().getPlayerView().render(g, xLvlOffset, yLvlOffset, getPlayerManager().getAniIndex());
             }
         }
 

@@ -1,13 +1,15 @@
 package GameStates;
 
+import controller.game.LevelManager;
+import controller.game.PlayerManager;
 import controller.loop.Game;
-import model.entities.Player;
-import view.level.LevelManager;
-import view.player.PlayerManager;
+
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+
+import static _utilities.constants.Constants.ViewConstants.SCALE;
 
 public class GameRun extends State implements  StateInterface {
     private PlayerManager player;
@@ -17,7 +19,7 @@ public class GameRun extends State implements  StateInterface {
         super(game);
     }
     public void initClasses() {
-        player = new PlayerManager(this.game, 100, 100);
+        player = new PlayerManager(this.game, 200 * SCALE, 1152 * SCALE);
         level = new LevelManager(this.game);
     }
 

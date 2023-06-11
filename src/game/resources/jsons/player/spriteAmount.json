@@ -1,7 +1,7 @@
 {
   "IDLE": 4,
   "RUNNING": 6,
-  "JUMP": 4,
+  "JUMP": 3,
   "FALLING": 2,
   "HIT": 3,
   "ATTACK_1": 5,

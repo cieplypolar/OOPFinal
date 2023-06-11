@@ -1,4 +1,4 @@
-package utilities.images;
+package _utilities.loaders;
 
 import javax.imageio.ImageIO;
 import java.awt.geom.AffineTransform;

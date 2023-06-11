@@ -8,6 +8,8 @@ import controller.inputs.KeyboardInputs;
 import controller.inputs.MouseInputs;
 import controller.loop.Game;
 
+import static _utilities.constants.Constants.ViewConstants.*;
+
 public class GamePanel extends JPanel {
 
     private MouseInputs mouseInputs;
@@ -24,7 +26,7 @@ public class GamePanel extends JPanel {
     }
 
     private void setPanelSize() {
-        Dimension size = new Dimension(game.GAME_WIDTH, game.GAME_HEIGHT);
+        Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT);
         setPreferredSize(size);
     }
 

@@ -1,30 +1,24 @@
-package view.player;
+package controller.game;
 
 import controller.loop.Game;
 import model.entities.Player;
+import view.player.PlayerView;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
-import static utilities.constants.Constants.PlayerConstants.*;
-import static utilities.constants.Constants.PlayerConstants.playerState.*;
-import static utilities.constants.Constants.View.SCALE;
-import static utilities.helpers.PlayerHelperMethods.canMoveHere;
-import static utilities.helpers.PlayerHelperMethods.isOnGround;
-import static utilities.images.ImageHandler.importImg;
-import static utilities.images.ImageHandler.reflectImg;
-import static utilities.loaders.PlayerLoader.loadPlayerAnimations;
+import static _utilities.constants.Constants.PlayerConstants.*;
+import static _utilities.constants.Constants.PlayerConstants.playerState.*;
+import static _utilities.helpers.PlayerHelperMethods.canMoveHere;
+import static _utilities.helpers.PlayerHelperMethods.isOnGround;
 
 public class PlayerManager {
     private Game game;
-    private BufferedImage[][] animations;
     private int aniTick, aniIndex, aniSpeed = 25;
     private Player player;
+    private PlayerView playerView;
 
     public PlayerManager(Game game, int x, int y) {
         this.game = game;
         this.player = new Player(x, y);
-        this.animations = loadPlayerAnimations();
+        this.playerView = new PlayerView(player);
     }
 
     public void update() {
@@ -56,8 +50,8 @@ public class PlayerManager {
         if (this.player.isAttacking()) {
             this.player.setPlayerAction(ATTACK_1);
         }
-        if (this.player.isInAir()){
-            this.player.setPlayerAction(FALLING);
+        if (this.player.isInAir()) {
+            this.player.setPlayerAction(JUMP);
         }
         if (startAni != this.player.getPlayerAction()) {
             resetAniTick();
@@ -126,14 +120,15 @@ public class PlayerManager {
         player.setInAir(true);
     }
 
-    public void render(Graphics g, int lvlOffset) {
-        g.drawImage(((this.player.getFacing() == Facing.RIGHT) ? animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex] : reflectImg(animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex])),
-                (int) (this.player.getHitBox().x - xOffSet * SCALE) - lvlOffset, (int) (this.player.getHitBox().y - yOffset * SCALE),
-                PLAYER_WIDTH * SCALE, PLAYER_HEIGHT * SCALE, null);
-        player.drawHitBox(g, lvlOffset);
-    }
-
     public Player getPlayer() {
         return player;
+    }
+
+    public PlayerView getPlayerView() {
+        return playerView;
+    }
+
+    public int getAniIndex() {
+        return aniIndex;
     }
 }

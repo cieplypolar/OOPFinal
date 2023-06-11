@@ -1,10 +1,10 @@
 package model.entities;
 
-import utilities.constants.Constants;
+import _utilities.constants.Constants;
 
-import static utilities.constants.Constants.PlayerConstants.*;
-import static utilities.constants.Constants.PlayerConstants.playerState.*;
-import static utilities.constants.Constants.View.SCALE;
+import static _utilities.constants.Constants.PlayerConstants.*;
+import static _utilities.constants.Constants.PlayerConstants.playerState.*;
+import static _utilities.constants.Constants.ViewConstants.SCALE;
 
 public class Player extends Entity {
     private playerState playerAction = IDLE;
@@ -13,7 +13,7 @@ public class Player extends Entity {
     private float playerSpeed = 1.5f;
     private float airSpeed = 0f;
     private float gravity = 0.04f * SCALE;
-    private float jumpSpeed = -2.4f * SCALE;
+    private float jumpSpeed = -2.7f * SCALE;
     private float fallSpeedCollision = 0.6f * SCALE;
     private boolean inAir = false;
 
