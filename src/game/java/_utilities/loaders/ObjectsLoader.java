@@ -2,6 +2,7 @@ package _utilities.loaders;
 
 import model.entities.Objects.GameContainer;
 import model.entities.Objects.Heart;
+import model.entities.Objects.Spikes;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -24,5 +25,18 @@ public class ObjectsLoader {
             }
         }
 return container;
+    }
+
+    public static ArrayList<Spikes> loadSpikes(String path ) {
+        BufferedImage image = importImg(path);
+        ArrayList<Spikes> spikes = new ArrayList<>();
+        for (int i = 0; i < image.getHeight(); i++) {
+            for (int j = 0; j < image.getWidth(); j++) {
+                Color color = new Color(image.getRGB(j, i));
+                if (color.getRed() ==203)spikes.add(new Spikes(j * TILES_SIZE*SCALE, i * TILES_SIZE*SCALE, 3));
+
+            }
+        }
+        return spikes;
     }
 }

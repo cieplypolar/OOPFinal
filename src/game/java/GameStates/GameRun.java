@@ -29,8 +29,9 @@ public class GameRun extends State implements  StateInterface {
     @Override
     public void update() {
         level.update();
-        player.update();
         objects.update();
+        player.update();
+
     }
 
     @Override

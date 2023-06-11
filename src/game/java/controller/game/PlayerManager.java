@@ -23,12 +23,18 @@ public class PlayerManager {
 
     public void update() {
         updatePos();
-        if(player.isMoving())game.getObjectManager().checkIfTouched(player.getHitBox());
+        if(player.isMoving()){
+            game.getObjectManager().checkIfTouched(player.getHitBox());
+            game.getObjectManager().checkSpikesTouched(player.getHitBox());
+        }
         if(player.isAttacking())game.getObjectManager().checkIfHit(player.getHitBox());
+
         updateAnimationTick();
         setAnimation();
     }
-
+    public void checkHealth(){
+        if(player.getHealth()<=0)System.out.println("YOU DIED"); //TODO: CREATE DEATH MECHANIC
+    }
     private void updateAnimationTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {

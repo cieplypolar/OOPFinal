@@ -1,6 +1,8 @@
 package model.entities.Objects;
 
 
+import java.awt.*;
+
 import static _utilities.constants.Constants.ObjectConstants.*;
 import static _utilities.constants.Constants.ViewConstants.SCALE;
 
@@ -9,15 +11,18 @@ public class GameContainer extends GameObject {
         super(x, y, type);
         createHitbox();
     }
-
+    public void drawHitBox(Graphics g, int xlvlOffset, int ylvlOffset) {
+        g.setColor(Color.CYAN);
+        g.drawRect((int) hitBox.x - xlvlOffset, (int) hitBox.y - ylvlOffset, (int) hitBox.width, (int) hitBox.height);
+    }
     protected void createHitbox() {
         if (type == CRATE) {
-            initHitBox(25,18);
+            initHitBox(25*SCALE,18*SCALE);
             xDrawOffset=CRATE_X_OFFSET* SCALE;
             yDrawOffset = CRATE_Y_OFFSET*SCALE;
         }
         else {
-            initHitBox(23,25);
+            initHitBox(23*SCALE,25*SCALE);
             xDrawOffset=BARREL_X_OFFSET* SCALE;
             yDrawOffset = BARREL_Y_OFFSET*SCALE;
         }
