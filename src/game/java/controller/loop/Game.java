@@ -1,10 +1,12 @@
 package controller.loop;
 
+import GameStates.GameRun;
+import GameStates.GameState;
 import view.level.LevelManager;
 import view.player.PlayerManager;
 import view.window.GamePanel;
 import view.window.GameWindow;
-
+import GameStates.Menu;
 import java.awt.*;
 
 import static utilities.constants.Constants.View.SCALE;
@@ -22,8 +24,8 @@ public class Game implements Runnable {
     public final static int TILES_SIZE = 32;
     public final static int GAME_HEIGHT = HEIGHT * TILES_SIZE * SCALE;
     public final static int GAME_WIDTH = WIDTH * TILES_SIZE * SCALE;
-    private PlayerManager player;
-    private LevelManager level;
+    private GameRun gamerun;
+    private Menu menu;
 
     private int xLvlOffset;
     private int letfBorder = (int) (0.2 * Game.GAME_HEIGHT);
@@ -33,7 +35,9 @@ public class Game implements Runnable {
     private int maxLvlOffser = maxTilesOffset * Game.TILES_SIZE * SCALE;
 
     public Game() {
-        initClasses();
+        gamerun=new GameRun(this);
+        menu= new Menu(this);
+        gamerun.initClasses();
 
         gamePanel = new GamePanel(this);
         gameWindow = new GameWindow(gamePanel);
@@ -42,10 +46,7 @@ public class Game implements Runnable {
 
     }
 
-    private void initClasses() {
-        player = new PlayerManager(this, 100, 100);
-        level = new LevelManager(this);
-    }
+
 
     private void startGameLoop() {
         gameThread = new Thread(this);
@@ -53,14 +54,22 @@ public class Game implements Runnable {
     }
 
     public void update() {
-        level.update();
-        player.update();
-        checkCloseToBorder();
+        switch(GameState.gamestate){
+            case MENU -> {
+                menu.update();
+
+            }
+            case GAMERUN -> {
+                gamerun.update();
+                checkCloseToBorder();
+            }
+        }
+
 
     }
 
     private void checkCloseToBorder() {
-        int playerX = (int) player.getPlayer().getHitBox().x;
+        int playerX = (int) gamerun.getPlayerManager().getPlayer().getHitBox().x;
         int diff = playerX - xLvlOffset;
         if (diff > rightBorder) {
             xLvlOffset += diff - rightBorder;
@@ -77,23 +86,32 @@ public class Game implements Runnable {
     }
 
     public void render(Graphics g) {
-        level.draw(g, xLvlOffset);
-        player.render(g, xLvlOffset);
+
+        switch(GameState.gamestate){
+            case MENU -> {
+                menu.render();
+            }
+            case GAMERUN -> {
+                gamerun.getLevelManager().draw(g, xLvlOffset);
+                gamerun.getPlayerManager().render(g, xLvlOffset);
+            }
+        }
+
 
     }
 
     public void windowFocusLost() {
-        player.getPlayer().resetDirBooleans();
+        gamerun.getPlayerManager().getPlayer().resetDirBooleans();
     }
 
     public PlayerManager getPlayerManager() {
-        return player;
+        return gamerun.getPlayerManager();
     }
 
     public LevelManager getLevelManager() {
-        return level;
+        return gamerun.getLevelManager();
     }
-
+    public GameRun getGameRun(){return gamerun;}
     @Override
     public void run() {
 
@@ -140,4 +158,7 @@ public class Game implements Runnable {
 
     }
 
+    public Menu getMenu() {
+        return menu;
+    }
 }

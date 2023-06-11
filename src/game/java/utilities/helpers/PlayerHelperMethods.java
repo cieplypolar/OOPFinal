@@ -28,6 +28,14 @@ public class PlayerHelperMethods {
         float yIndex = y / (Game.TILES_SIZE * SCALE);
 
         int value = lvlData[(int) yIndex][(int) xIndex];
+        if(value == 117)return false;
+        if(value == 118)return false;
+        if(value == 135)return false;
+        if(value == 136)return false;
+        if(value == 153)return false;
+        if(value == 154)return false;
+        if(value == 171)return false;
+        if(value == 172)return false;
 
         if (value <= 180 && value != 0)
             return true;

@@ -9,7 +9,7 @@ import java.util.Set;
 public class Constants {
 
     public static class View {
-        public static final int SCALE = 1;
+        public static final int SCALE = 2;
     }
 
     public static class PlayerConstants {

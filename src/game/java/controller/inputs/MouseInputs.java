@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import GameStates.GameState;
 import view.window.GamePanel;
 
 public class MouseInputs implements MouseListener, MouseMotionListener {
@@ -27,9 +28,14 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        switch (GameState.gamestate) {
+            case MENU -> {
+                gamePanel.getGame().getMenu().mouseClicked(e);
+            }
+            case GAMERUN -> {
+            }
+        }
     }
-
     @Override
     public void mousePressed(MouseEvent e) {
         // TODO Auto-generated method stub
