@@ -63,6 +63,9 @@ public class Game implements Runnable {
                 gamerun.update();
                 checkCloseToBorder();
             }
+            case QUIT -> {
+                System.exit(0);
+            }
         }
 
 
@@ -89,7 +92,7 @@ public class Game implements Runnable {
 
         switch(GameState.gamestate){
             case MENU -> {
-                menu.render();
+                menu.render(g);
             }
             case GAMERUN -> {
                 gamerun.getLevelManager().draw(g, xLvlOffset);

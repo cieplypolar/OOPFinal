@@ -5,6 +5,7 @@ import model.entities.Player;
 import view.level.LevelManager;
 import view.player.PlayerManager;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -27,7 +28,7 @@ public class GameRun extends State implements  StateInterface {
     }
 
     @Override
-    public void render() {
+    public void render(Graphics g) {
 
     }
 

@@ -23,7 +23,14 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        switch (GameState.gamestate) {
+            case MENU -> {
+                gamePanel.getGame().getMenu().mouseMoved(e);
+            }
+            case GAMERUN -> {
 
+            }
+        }
     }
 
     @Override
@@ -38,13 +45,26 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     }
     @Override
     public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
+        switch (GameState.gamestate) {
+            case MENU -> {
+                gamePanel.getGame().getMenu().mousePressed(e);
+            }
+            case GAMERUN -> {
 
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
+        switch (GameState.gamestate) {
+            case MENU -> {
+                gamePanel.getGame().getMenu().mouseReleased(e);
+            }
+            case GAMERUN -> {
+
+            }
+        }
 
     }
 
