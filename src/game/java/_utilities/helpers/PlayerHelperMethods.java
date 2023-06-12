@@ -21,7 +21,7 @@ public class PlayerHelperMethods {
     public static boolean isOnFinish(Rectangle2D.Float hitbox, int[][] levellayout){
 
 
-        if(levellayout[(int) hitbox.y/ (TILES_SIZE * SCALE)][(int) hitbox.x/ (TILES_SIZE * SCALE)]==100 && levellayout[(int) (hitbox.y)/ (TILES_SIZE * SCALE)][(int) (hitbox.x+hitbox.width)/ (TILES_SIZE * SCALE)]==100 )return true;
+        if(levellayout[(int) hitbox.y/ (TILES_SIZE * SCALE)][(int) hitbox.x/ (TILES_SIZE * SCALE)]==175 && levellayout[(int) (hitbox.y)/ (TILES_SIZE * SCALE)][(int) (hitbox.x+hitbox.width)/ (TILES_SIZE * SCALE)]==175 )return true;
 
         return false;
 
@@ -45,8 +45,8 @@ public class PlayerHelperMethods {
         if(value == 154)return false;
         if(value == 171)return false;
         if(value == 172)return false;
-        if(value == 100)return false;
-
+        if(value == 157)return false;
+        if(value == 175)return false;
         if (value <= 180 && value != 0)
             return true;
         return false;

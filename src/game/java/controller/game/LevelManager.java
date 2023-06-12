@@ -34,7 +34,7 @@ public class LevelManager {
     }
 
     public void draw(Graphics graphic, int xlvlOffset, int ylvlOffset) {
-        level.setLevelLayout(loadLevel("/level.graphics/bigggglvl.png"));
+        level.setLevelLayout(loadLevel("/level.graphics/biggestlevel.png"));
         for (int i = level.getLevelLayout().length - 1; i >= 0; i--) {
             for (int j = 0; j < level.getLevelLayout()[0].length; j++) {
                 graphic.drawImage(levelImage[level.getLevelLayout()[i][j]], TILES_SIZE * SCALE * j - xlvlOffset, TILES_SIZE * SCALE * i - ylvlOffset, TILES_SIZE * SCALE, TILES_SIZE * SCALE, null);

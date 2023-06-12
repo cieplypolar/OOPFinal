@@ -29,8 +29,8 @@ public class ObjectManager {
         this.game = game;
         loadImages();
         items=new ArrayList<>();
-        containers = loadContainers("/level.graphics/bigggglvl.png");
-        spikes = loadSpikes("/level.graphics/bigggglvl.png");
+        containers = loadContainers("/level.graphics/biggestlevel.png");
+        spikes = loadSpikes("/level.graphics/biggestlevel.png");
     }
 
     private void loadImages() {

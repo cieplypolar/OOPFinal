@@ -21,7 +21,7 @@ public class GameRun extends State implements  StateInterface {
         super(game);
     }
     public void initClasses() {
-        player = new PlayerManager(this.game, 200 * SCALE, 1152 * SCALE);
+        player = new PlayerManager(this.game, 300 * SCALE, 1150 * SCALE);
         level = new LevelManager(this.game);
         objects = new ObjectManager(this.game);
     }

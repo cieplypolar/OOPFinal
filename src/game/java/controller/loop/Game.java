@@ -46,13 +46,13 @@ public class Game implements Runnable {
     private int xLvlOffset;
     private int letfBorder = (int) (0.2 * GAME_WIDTH);
     private int rightBorder = (int) (0.8 * GAME_WIDTH);
-    private int lvlTilesWidth = importImg("/level.graphics/bigggglvl.png").getWidth();
+    private int lvlTilesWidth = importImg("/level.graphics/biggestlevel.png").getWidth();
     private int maxTilesOffsetHor = lvlTilesWidth - WIDTH_IN_TILES;
     private int maxLvlOffsetHor = maxTilesOffsetHor * TILES_SIZE * SCALE;
     private int yLvlOffset;
     private int upBorder = (int) (0.2 * GAME_HEIGHT);
     private int downBorder = (int) (0.8 * GAME_HEIGHT);
-    private int lvlTilesHeight = importImg("/level.graphics/bigggglvl.png").getHeight();
+    private int lvlTilesHeight = importImg("/level.graphics/biggestlevel.png").getHeight();
     private int maxTilesOffsetVer = lvlTilesHeight - HEIGHT_IN_TILES;
     private int maxLvlOffsetVer = maxTilesOffsetVer * TILES_SIZE * SCALE;
 
