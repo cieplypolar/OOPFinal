@@ -1,0 +1,7 @@
+{
+  "IDLE": 4,
+  "RUNNING": 8,
+  "HIT": 4,
+  "ATTACK": 8,
+  "DIE": 4
+}

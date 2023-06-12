@@ -2,13 +2,15 @@ package model.entities;
 
 import _utilities.constants.Constants;
 
+import java.awt.geom.Rectangle2D;
+
 import static _utilities.constants.Constants.PlayerConstants.*;
-import static _utilities.constants.Constants.PlayerConstants.playerState.*;
+import static _utilities.constants.Constants.PlayerConstants.PlayerState.*;
 import static _utilities.constants.Constants.ViewConstants.SCALE;
 
 public class Player extends Entity {
-    private playerState playerAction = IDLE;
-    private boolean moving = false, attacking = false, isdead = false;
+    private PlayerState playerAction = IDLE;
+    private boolean moving = false, attacking = false;
     private boolean left, right, up, down, jump;
     private float playerSpeed = 1.5f;
     private float airSpeed = 0f;
@@ -16,11 +18,18 @@ public class Player extends Entity {
     private float jumpSpeed = -2.7f * SCALE;
     private float fallSpeedCollision = 0.6f * SCALE;
     private boolean inAir = false;
+    private boolean isdead = false;
+    private Rectangle2D.Float attackBox;
 
     public Player(float x, float y) {
         super(x, y, REAL_PLAYER_WIDTH * SCALE, REAL_PLAYER_HEIGHT * SCALE);
         initHitBox(x, y, REAL_PLAYER_WIDTH * SCALE, REAL_PLAYER_HEIGHT * SCALE);
-        health = 3;
+        initAttackBox();
+        health = 10;
+    }
+
+    private void initAttackBox() {
+        attackBox = new Rectangle2D.Float(x, y, 20 * SCALE, 20 * SCALE);
     }
 
     public void resetDirBooleans() {
@@ -32,32 +41,21 @@ public class Player extends Entity {
         attacking = false;
     }
 
-    public Facing getFacing() {
+    public Constants.Facing getFacing() {
         return this.facing;
     }
 
-    public void setFacing(Constants.PlayerConstants.Facing facing) {
+    public void setFacing(Constants.Facing facing) {
         this.facing = facing;
     }
 
-    public playerState getPlayerAction() {
+    public PlayerState getPlayerAction() {
         return this.playerAction;
     }
 
-    public float getPlayerX() {
-        return this.x;
-    }
 
-    public int getPlayerWidth() {
-        return this.width;
-    }
-
-    public int getPlayerHeight() {
-        return this.height;
-    }
-
-    public float getPlayerY() {
-        return this.y;
+    public Rectangle2D.Float getAttackBox() {
+        return attackBox;
     }
 
     public void setAttacking(boolean attacking) {
@@ -104,7 +102,7 @@ public class Player extends Entity {
         this.down = down;
     }
 
-    public void setPlayerAction(playerState playerAction) {
+    public void setPlayerAction(PlayerState playerAction) {
         this.playerAction = playerAction;
     }
 
@@ -120,13 +118,6 @@ public class Player extends Entity {
         return this.attacking;
     }
 
-    public void setPlayerX(int x) {
-        this.x = x;
-    }
-
-    public void setPlayerY(int y) {
-        this.y = y;
-    }
 
     public float getPlayerSpeed() {
         return this.playerSpeed;

@@ -10,10 +10,7 @@ public class PlayerLoader {
         BufferedImage[][] animations = new BufferedImage[8][7];
         initPlayerConstants();
         for (String key : getPlayerStates()) {
-            System.out.println(key);
             for (int i = 0; i < getSpriteAmount(key); ++i) {
-                System.out.println(getSpriteAmount(key));
-                System.out.println(i);
                 animations[getAnimationIndex(key)][i] = importImg(getSpritePath(key, i));
             }
         }
