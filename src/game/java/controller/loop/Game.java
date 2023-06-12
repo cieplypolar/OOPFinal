@@ -1,5 +1,6 @@
 package controller.loop;
 
+import GameStates.GameOver;
 import GameStates.GameRun;
 import GameStates.GameState;
 import controller.game.LevelManager;
@@ -22,6 +23,16 @@ public class Game implements Runnable {
     private final int UPS_SET = 200;
     private GameRun gamerun;
     private Menu menu;
+    private GameOver gameover;
+    public GameOver getGameover() {
+        return gameover;
+    }
+
+    public void setGameover(GameOver gameover) {
+        this.gameover = gameover;
+    }
+
+
 
     public int getxLvlOffset() {
         return xLvlOffset;
@@ -47,6 +58,7 @@ public class Game implements Runnable {
     public Game() {
         gamerun=new GameRun(this);
         menu= new Menu(this);
+        gameover = new GameOver(this);
         gamerun.initClasses();
 
         gamePanel = new GamePanel(this);
@@ -67,12 +79,15 @@ public class Game implements Runnable {
                 menu.update();
 
             }
-            case GAMERUN -> {
+            case GAMERUN, DEAD -> {
                 gamerun.update();
                 checkCloseToBorder();
             }
             case QUIT -> {
                 System.exit(0);
+            }
+            case GAMEOVER -> {
+                gameover.update();
             }
         }
 
@@ -114,8 +129,11 @@ public class Game implements Runnable {
             case MENU -> {
                 menu.render(g);
             }
-            case GAMERUN -> {
+            case GAMERUN, DEAD -> {
                 gamerun.render(g);
+            }
+            case GAMEOVER -> {
+                gameover.render(g);
             }
         }
 

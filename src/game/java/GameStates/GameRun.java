@@ -137,4 +137,8 @@ public class GameRun extends State implements  StateInterface {
     public ObjectManager getObjectManager() {
         return objects;
     }
+
+    public void setGameOver(boolean b) {
+
+    }
 }

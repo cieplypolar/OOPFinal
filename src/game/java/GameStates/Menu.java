@@ -15,15 +15,15 @@ import static _utilities.loaders.ImageHandler.importImg;
 public class Menu extends State implements StateInterface{
 
 BufferedImage menubackground;
-MenuButton[] buttons = new MenuButton[3];
+MenuButton[] buttons = new MenuButton[2];
 
 
     public Menu(Game game) {
         super(game);
         menubackground = importImg("/menugraphics/menu.png");
         buttons[0]= new MenuButton(GAME_WIDTH/2, 200, 0,GAMERUN);
-        buttons[1]= new MenuButton(GAME_WIDTH/2, 300, 1,QUIT);
-        buttons[2]= new MenuButton(GAME_WIDTH/2, 400, 2,QUIT);
+        buttons[1]= new MenuButton(GAME_WIDTH/2, 350, 1,QUIT);
+
     }
     @Override
     public void update(){
@@ -103,7 +103,7 @@ MenuButton[] buttons = new MenuButton[3];
 
     }
 
-    ;
+
 
 
 }

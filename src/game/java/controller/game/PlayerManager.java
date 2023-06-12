@@ -1,9 +1,12 @@
 package controller.game;
 
+import GameStates.GameState;
 import controller.loop.Game;
 import model.entities.Player;
 import view.player.PlayerView;
 
+import static GameStates.GameState.DEAD;
+import static GameStates.GameState.GAMEOVER;
 import static _utilities.constants.Constants.PlayerConstants.*;
 import static _utilities.constants.Constants.PlayerConstants.playerState.*;
 import static _utilities.helpers.PlayerHelperMethods.canMoveHere;
@@ -23,24 +26,39 @@ public class PlayerManager {
 
     public void update() {
         updatePos();
+
         if(player.isMoving()){
             game.getObjectManager().checkIfTouched(player.getHitBox());
             game.getObjectManager().checkSpikesTouched(player.getHitBox());
         }
         if(player.isAttacking())game.getObjectManager().checkIfHit(player.getHitBox());
 
+        if(player.getHealth()<=0){
+
+            GameState.gamestate = DEAD;
+            player.setIsDead(true);
+
+
+        }
         updateAnimationTick();
         setAnimation();
     }
     public void checkHealth(){
-        if(player.getHealth()<=0)System.out.println("YOU DIED"); //TODO: CREATE DEATH MECHANIC
+        if(player.getHealth()<=0){
+
+            GameState.gamestate = DEAD;
+
+
+        }
     }
+
     private void updateAnimationTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex++;
             if (aniIndex >= getSpriteAmount(this.player.getPlayerAction().toString())) {
+            if(player.getIsDead())GameState.gamestate=GAMEOVER;
                 aniIndex = 0;
                 this.player.setAttacking(false);
             }
@@ -48,6 +66,10 @@ public class PlayerManager {
     }
 
     private void setAnimation() {
+        if(this.player.getIsDead()){this.player.setPlayerAction(DIE);
+            aniSpeed=100;
+
+            return;}
         playerState startAni = this.player.getPlayerAction();
 
         if (this.player.isMoving()) {
@@ -64,13 +86,22 @@ public class PlayerManager {
         if (startAni != this.player.getPlayerAction()) {
             resetAniTick();
         }
+
     }
 
     private void resetAniTick() {
         aniTick = 0;
         aniIndex = 0;
     }
+    public void resetPlayer(){
 
+        player.setInAir(false);
+        player.setAttacking(false);
+        player.setMoving(false);
+        player.setHealth(3);
+        player.setPlayerAction(IDLE);
+
+    }
     private void updatePos() {
         player.setMoving(false);
         if (!isOnGround(player.getHitBox(), game.getLevelManager().getLevel().getLevelLayout())) player.setInAir(true);
@@ -79,17 +110,17 @@ public class PlayerManager {
             return;
 
         float xTemp = 0;
+        if(GameState.gamestate!=DEAD) {
+            if (player.isLeft() && !player.isRight() && !player.isAttacking()) {
+                player.setFacing(Facing.LEFT);
+                xTemp = -player.getPlayerSpeed();
 
-        if (player.isLeft() && !player.isRight() && !player.isAttacking()) {
-            player.setFacing(Facing.LEFT);
-            xTemp = -player.getPlayerSpeed();
+            } else if (player.isRight() && !player.isLeft() && !player.isAttacking()) {
+                player.setFacing(Facing.RIGHT);
+                xTemp = player.getPlayerSpeed();
 
-        } else if (player.isRight() && !player.isLeft() && !player.isAttacking()) {
-            player.setFacing(Facing.RIGHT);
-            xTemp = player.getPlayerSpeed();
-
+            }
         }
-
         if (player.isInAir()) {
             if (canMoveHere(player.getHitBox().x, player.getHitBox().y + player.getPlayerAirSpeed(), player.getHitBox().width, player.getHitBox().height, game.getLevelManager().getLevel().getLevelLayout())) {
                 player.getHitBox().y += player.getPlayerAirSpeed();

@@ -26,9 +26,10 @@ public class KeyboardInputs implements KeyListener {
             case MENU -> {
 
             }
-            case GAMERUN -> {
+            case GAMERUN,DEAD -> {
                 gamePanel.getGame().getGameRun().keyReleased(e);
             }
+
         }
     }
 
@@ -41,6 +42,7 @@ public class KeyboardInputs implements KeyListener {
             case GAMERUN -> {
                 gamePanel.getGame().getGameRun().keyPressed(e);
             }
+            case DEAD ->{}
         }
     }
 

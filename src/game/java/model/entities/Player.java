@@ -8,7 +8,7 @@ import static _utilities.constants.Constants.ViewConstants.SCALE;
 
 public class Player extends Entity {
     private playerState playerAction = IDLE;
-    private boolean moving = false, attacking = false;
+    private boolean moving = false, attacking = false, isdead = false;
     private boolean left, right, up, down, jump;
     private float playerSpeed = 1.5f;
     private float airSpeed = 0f;
@@ -20,7 +20,7 @@ public class Player extends Entity {
     public Player(float x, float y) {
         super(x, y, REAL_PLAYER_WIDTH * SCALE, REAL_PLAYER_HEIGHT * SCALE);
         initHitBox(x, y, REAL_PLAYER_WIDTH * SCALE, REAL_PLAYER_HEIGHT * SCALE);
-        health=3;
+        health = 3;
     }
 
     public void resetDirBooleans() {
@@ -157,6 +157,14 @@ public class Player extends Entity {
     }
 
     public void setHealth(int health) {
-        this.health=health;
+        this.health = health;
+    }
+
+    public void setIsDead(boolean b) {
+        isdead = b;
+    }
+
+    public boolean getIsDead() {
+        return isdead;
     }
 }
