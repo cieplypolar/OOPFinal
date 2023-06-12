@@ -18,6 +18,14 @@ public class PlayerHelperMethods {
             if (!isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, levelLayout)) return false;
         return true;
     }
+    public static boolean isOnFinish(Rectangle2D.Float hitbox, int[][] levellayout){
+
+
+        if(levellayout[(int) hitbox.y/ (TILES_SIZE * SCALE)][(int) hitbox.x/ (TILES_SIZE * SCALE)]==100 && levellayout[(int) (hitbox.y)/ (TILES_SIZE * SCALE)][(int) (hitbox.x+hitbox.width)/ (TILES_SIZE * SCALE)]==100 )return true;
+
+        return false;
+
+    }
 
     private static boolean isSolid(float x, float y, int[][] lvlData) {
         if (x <= 0 || x >= lvlData[0].length * TILES_SIZE * SCALE)
@@ -37,6 +45,7 @@ public class PlayerHelperMethods {
         if(value == 154)return false;
         if(value == 171)return false;
         if(value == 172)return false;
+        if(value == 100)return false;
 
         if (value <= 180 && value != 0)
             return true;

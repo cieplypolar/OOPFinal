@@ -1,15 +1,15 @@
 package controller.loop;
 
-import GameStates.GameOver;
-import GameStates.GameRun;
-import GameStates.GameState;
+import GameStates.*;
+import GameStates.Menu;
 import controller.game.LevelManager;
 import controller.game.ObjectManager;
 import controller.game.PlayerManager;
 import view.window.GamePanel;
 import view.window.GameWindow;
-import GameStates.Menu;
+
 import java.awt.*;
+import java.awt.event.MouseListener;
 
 import static _utilities.constants.Constants.ViewConstants.*;
 import static _utilities.loaders.ImageHandler.importImg;
@@ -23,12 +23,13 @@ public class Game implements Runnable {
     private final int UPS_SET = 200;
     private GameRun gamerun;
     private Menu menu;
-    private GameOver gameover;
-    public GameOver getGameover() {
+    private GameEnd gameover;
+    private GameFinish finish;
+    public GameEnd getGameover() {
         return gameover;
     }
 
-    public void setGameover(GameOver gameover) {
+    public void setGameover(GameEnd gameover) {
         this.gameover = gameover;
     }
 
@@ -58,7 +59,8 @@ public class Game implements Runnable {
     public Game() {
         gamerun=new GameRun(this);
         menu= new Menu(this);
-        gameover = new GameOver(this);
+        gameover = new GameEnd(this);
+        finish= new GameFinish(this);
         gamerun.initClasses();
 
         gamePanel = new GamePanel(this);
@@ -88,6 +90,9 @@ public class Game implements Runnable {
             }
             case GAMEOVER -> {
                 gameover.update();
+            }
+            case FINISH -> {
+                finish.update();;
             }
         }
 
@@ -134,6 +139,9 @@ public class Game implements Runnable {
             }
             case GAMEOVER -> {
                 gameover.render(g);
+            }
+            case FINISH -> {
+                finish.render(g);
             }
         }
 
@@ -203,5 +211,9 @@ public class Game implements Runnable {
 
     public Menu getMenu() {
         return menu;
+    }
+
+    public GameFinish getFinish() {
+        return finish;
     }
 }

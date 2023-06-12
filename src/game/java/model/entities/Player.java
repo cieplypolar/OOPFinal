@@ -13,7 +13,7 @@ public class Player extends Entity {
     private float playerSpeed = 1.5f;
     private float airSpeed = 0f;
     private float gravity = 0.04f * SCALE;
-    private float jumpSpeed = -2.7f * SCALE;
+    private float jumpSpeed = -2.5f * SCALE;
     private float fallSpeedCollision = 0.6f * SCALE;
     private boolean inAir = false;
 

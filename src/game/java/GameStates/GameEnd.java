@@ -12,17 +12,18 @@ import static _utilities.constants.Constants.ViewConstants.GAME_HEIGHT;
 import static _utilities.constants.Constants.ViewConstants.GAME_WIDTH;
 import static _utilities.loaders.ImageHandler.importImg;
 
-public class GameOver extends State implements  StateInterface{
+public class GameEnd extends State implements  StateInterface{
 
 
 
-        BufferedImage deathbackground;
+
+        BufferedImage background;
         GameOverButton[] buttons = new GameOverButton[2];
 
 
-        public GameOver(Game game) {
+        public GameEnd(Game game) {
             super(game);
-            deathbackground = importImg("/menugraphics/gameover.png");
+            background = importImg("/menugraphics/gameover.png");
             buttons[0]= new GameOverButton(GAME_WIDTH/2, 200, 0,MENU);
             buttons[1]= new GameOverButton(GAME_WIDTH/2, 350, 1,QUIT);
         }
@@ -33,7 +34,7 @@ public class GameOver extends State implements  StateInterface{
 
         @Override
         public void render(Graphics g) {
-            g.drawImage(deathbackground,0,0,GAME_WIDTH, GAME_HEIGHT, null);
+            g.drawImage(background,0,0,GAME_WIDTH, GAME_HEIGHT, null);
             for(GameOverButton button : buttons)button.draw(g);
         }
         public boolean isOver(MouseEvent e, GameOverButton button){
