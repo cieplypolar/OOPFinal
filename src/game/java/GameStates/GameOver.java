@@ -22,7 +22,7 @@ public class GameOver extends State implements  StateInterface{
 
         public GameOver(Game game) {
             super(game);
-            deathbackground = importImg("/menugraphics/menu.png");
+            deathbackground = importImg("/menugraphics/gameover.png");
             buttons[0]= new GameOverButton(GAME_WIDTH/2, 200, 0,MENU);
             buttons[1]= new GameOverButton(GAME_WIDTH/2, 350, 1,QUIT);
         }
