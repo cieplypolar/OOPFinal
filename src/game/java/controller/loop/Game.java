@@ -1,14 +1,14 @@
 package controller.loop;
 
-import GameStates.GameOver;
-import GameStates.GameRun;
-import GameStates.GameState;
+import gameStates.GameOver;
+import gameStates.GameRun;
+import gameStates.GameState;
 import controller.game.LevelManager;
 import controller.game.ObjectManager;
 import controller.game.PlayerManager;
 import view.window.GamePanel;
 import view.window.GameWindow;
-import GameStates.Menu;
+import gameStates.Menu;
 import java.awt.*;
 
 import static _utilities.constants.Constants.ViewConstants.*;

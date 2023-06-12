@@ -1,4 +1,4 @@
-package GameStates;
+package gameStates;
 
 import controller.loop.Game;
 

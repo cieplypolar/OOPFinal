@@ -1,12 +1,12 @@
 package controller.game;
 
-import GameStates.GameState;
+import gameStates.GameState;
 import controller.loop.Game;
 import model.entities.Player;
 import view.player.PlayerView;
 
-import static GameStates.GameState.DEAD;
-import static GameStates.GameState.GAMEOVER;
+import static gameStates.GameState.DEAD;
+import static gameStates.GameState.GAMEOVER;
 import static _utilities.constants.Constants.PlayerConstants.*;
 import static _utilities.constants.Constants.PlayerConstants.playerState.*;
 import static _utilities.helpers.PlayerHelperMethods.canMoveHere;

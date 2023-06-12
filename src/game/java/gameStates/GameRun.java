@@ -1,4 +1,4 @@
-package GameStates;
+package gameStates;
 
 import controller.game.LevelManager;
 import controller.game.ObjectManager;

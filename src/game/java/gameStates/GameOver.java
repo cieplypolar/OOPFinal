@@ -1,4 +1,4 @@
-package GameStates;
+package gameStates;
 
 import controller.loop.Game;
 
@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import static GameStates.GameState.*;
+import static gameStates.GameState.*;
 import static _utilities.constants.Constants.ViewConstants.GAME_HEIGHT;
 import static _utilities.constants.Constants.ViewConstants.GAME_WIDTH;
 import static _utilities.loaders.ImageHandler.importImg;
