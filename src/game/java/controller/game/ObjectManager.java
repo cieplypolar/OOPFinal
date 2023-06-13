@@ -115,7 +115,7 @@ public void pickUp(Heart heart){
                 if (c.getType() == BARREL) type = 1;
                 g.drawImage(containerImages[type][c.getAniIndex()], (int) c.getHitBox().x - c.getxDrawOffset() - xLvlOffset,
                         (int) c.getHitBox().y - c.getyDrawOffset() - yLvlOffset, CONTAINER_WIDTH, CONTAINER_HEIGHT, null);
-               // c.drawHitBox(g,xLvlOffset,yLvlOffset);
+                c.drawHitBox(g,xLvlOffset,yLvlOffset);
             }
 
         }

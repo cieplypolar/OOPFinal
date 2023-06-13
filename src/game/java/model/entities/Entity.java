@@ -12,7 +12,7 @@ public abstract class Entity {
     protected int width, height;
     protected Rectangle2D.Float hitBox;
 
-    protected Constants.PlayerConstants.Facing facing = Constants.PlayerConstants.Facing.RIGHT;
+    protected Constants.Facing facing = Constants.Facing.RIGHT;
 
     Entity(float x, float y, int width, int height) {
         this.x = x;

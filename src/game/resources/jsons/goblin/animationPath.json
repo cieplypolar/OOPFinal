@@ -1,0 +1,8 @@
+{
+  "IDLE": "/animations/enemy/goblin/Idle.png",
+  "RUNNING": "/animations/enemy/goblin/Run.png",
+  "HIT": "/animations/enemy/goblin/Hit.png",
+  "ATTACK": "/animations/enemy/goblin/Attack.png",
+  "DIE": "/animations/enemy/goblin/Death.png"
+}
+

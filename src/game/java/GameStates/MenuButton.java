@@ -1,8 +1,5 @@
 package GameStates;
 
-import controller.loop.Game;
-import org.w3c.dom.css.Rect;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

@@ -11,6 +11,7 @@ import view.window.GameWindow;
 import java.awt.*;
 import java.awt.event.MouseListener;
 
+import static _utilities.constants.Constants.Paths.*;
 import static _utilities.constants.Constants.ViewConstants.*;
 import static _utilities.loaders.ImageHandler.importImg;
 
@@ -33,26 +34,16 @@ public class Game implements Runnable {
         this.gameover = gameover;
     }
 
-
-
-    public int getxLvlOffset() {
-        return xLvlOffset;
-    }
-
-    public int getyLvlOffset() {
-        return yLvlOffset;
-    }
-
     private int xLvlOffset;
     private int letfBorder = (int) (0.2 * GAME_WIDTH);
     private int rightBorder = (int) (0.8 * GAME_WIDTH);
-    private int lvlTilesWidth = importImg("/level.graphics/biggestlevel.png").getWidth();
+    private int lvlTilesWidth = importImg(LEVEL_DATA).getWidth();
     private int maxTilesOffsetHor = lvlTilesWidth - WIDTH_IN_TILES;
     private int maxLvlOffsetHor = maxTilesOffsetHor * TILES_SIZE * SCALE;
     private int yLvlOffset;
     private int upBorder = (int) (0.2 * GAME_HEIGHT);
     private int downBorder = (int) (0.8 * GAME_HEIGHT);
-    private int lvlTilesHeight = importImg("/level.graphics/biggestlevel.png").getHeight();
+    private int lvlTilesHeight = importImg(LEVEL_DATA).getHeight();
     private int maxTilesOffsetVer = lvlTilesHeight - HEIGHT_IN_TILES;
     private int maxLvlOffsetVer = maxTilesOffsetVer * TILES_SIZE * SCALE;
 
@@ -200,7 +191,6 @@ public class Game implements Runnable {
 
             if (System.currentTimeMillis() - lastCheck >= 1000) {
                 lastCheck = System.currentTimeMillis();
-                System.out.println("FPS: " + frames + " | UPS: " + updates);
                 frames = 0;
                 updates = 0;
 
@@ -209,8 +199,20 @@ public class Game implements Runnable {
 
     }
 
+    public GameRun getGamerun() {
+        return gamerun;
+    }
+
     public Menu getMenu() {
         return menu;
+    }
+
+    public int getxLvlOffset() {
+        return xLvlOffset;
+    }
+
+    public int getyLvlOffset() {
+        return yLvlOffset;
     }
 
     public GameFinish getFinish() {
