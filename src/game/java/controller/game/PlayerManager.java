@@ -7,10 +7,9 @@ import model.entities.Player;
 import view.player.PlayerView;
 
 import static _utilities.constants.Constants.ViewConstants.SCALE;
-import static GameStates.GameState.DEAD;
-import static GameStates.GameState.GAMEOVER;
+import static GameStates.GameState.*;
 import static _utilities.constants.Constants.PlayerConstants.*;
-import static _utilities.constants.Constants.PlayerConstants.PlayerState.*;
+import static _utilities.constants.Constants.PlayerConstants.playerState.*;
 import static model.entities.EntityHelperMethods.canMoveHere;
 import static model.entities.EntityHelperMethods.isOnGround;
 
@@ -33,6 +32,9 @@ public class PlayerManager {
         if (player.isMoving()) {
             game.getObjectManager().checkIfTouched(player.getHitBox());
             game.getObjectManager().checkSpikesTouched(player.getHitBox());
+            if(isOnFinish(player.getHitBox(),game.getLevelManager().getLevel().getLevelLayout())){
+                GameState.gamestate=FINISH;
+            };
         }
         if (player.isAttacking()) game.getObjectManager().checkIfHit(player.getHitBox());
 
