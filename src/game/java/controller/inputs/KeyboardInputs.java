@@ -3,7 +3,7 @@ package controller.inputs;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import gameStates.GameState;
+import GameStates.GameState;
 import view.window.GamePanel;
 
 public class KeyboardInputs implements KeyListener {

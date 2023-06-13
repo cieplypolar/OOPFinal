@@ -1,4 +1,4 @@
-package gameStates;
+package GameStates;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -6,8 +6,7 @@ import java.awt.image.BufferedImage;
 import static _utilities.constants.Constants.ViewConstants.SCALE;
 import static _utilities.loaders.ImageHandler.importImg;
 
-public class GameOverButton{
-
+public class MenuButton {
     private GameState gamestate;
     private int xPos, yPos, index, whichstate;
     private final int WIDTH = 140;
@@ -42,7 +41,7 @@ public class GameOverButton{
 
     private boolean mousePressed;
 
-    public GameOverButton(int x, int y, int index, GameState gamestate) {
+    public MenuButton(int x, int y, int index, GameState gamestate) {
         this.gamestate = gamestate;
         this.xPos = x - BUTTON_WIDTH / 2 - 10;
         this.yPos = y;
@@ -54,7 +53,7 @@ public class GameOverButton{
 
     private void loadImages() {
         images = new BufferedImage[3];
-        BufferedImage image = importImg("/menugraphics/buttons2.png");
+        BufferedImage image = importImg("/menugraphics/buttons.png");
         for (int i = 0; i < images.length; i++) {
             images[i] = image.getSubimage(i * WIDTH, index * HEIGHT, WIDTH, HEIGHT);
         }

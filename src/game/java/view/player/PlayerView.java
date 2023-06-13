@@ -32,8 +32,8 @@ public class PlayerView {
         g.drawImage(((this.player.getFacing() == Constants.Facing.RIGHT) ? animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex] : reflectImg(animations[getAnimationIndex(this.player.getPlayerAction().toString())][aniIndex])),
                 (int) (this.player.getHitBox().x - xOffSet * SCALE) - xlvlOffset, (int) (this.player.getHitBox().y - yOffset * SCALE) - ylvlOffset,
                 PLAYER_WIDTH * SCALE, PLAYER_HEIGHT * SCALE, null);
-//        player.drawHitBox(g, xlvlOffset, ylvlOffset);
-//        drawAttackBox(g, xlvlOffset, ylvlOffset);
+        player.drawHitBox(g, xlvlOffset, ylvlOffset);
+        drawAttackBox(g, xlvlOffset, ylvlOffset);
         for(int i=0; i<this.player.getHealth();i++){
             g.drawImage(healthbar,10+i* healthbar.getWidth()*SCALE*2,10,healthbar.getWidth()*2*SCALE,  healthbar.getHeight()*2*SCALE,null);
         }

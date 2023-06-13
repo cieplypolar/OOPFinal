@@ -1,11 +1,8 @@
 package controller.game;
 
 
-import gameStates.GameRun;
-import model.entities.Goblin;
+import GameStates.GameRun;
 import model.entities.Player;
-import org.w3c.dom.css.Rect;
-
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;

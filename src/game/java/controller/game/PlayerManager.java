@@ -1,14 +1,14 @@
 package controller.game;
 
-import gameStates.GameState;
+import GameStates.GameState;
 import _utilities.constants.Constants;
 import controller.loop.Game;
 import model.entities.Player;
 import view.player.PlayerView;
 
 import static _utilities.constants.Constants.ViewConstants.SCALE;
-import static gameStates.GameState.DEAD;
-import static gameStates.GameState.GAMEOVER;
+import static GameStates.GameState.DEAD;
+import static GameStates.GameState.GAMEOVER;
 import static _utilities.constants.Constants.PlayerConstants.*;
 import static _utilities.constants.Constants.PlayerConstants.PlayerState.*;
 import static model.entities.EntityHelperMethods.canMoveHere;

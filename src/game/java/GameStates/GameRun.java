@@ -1,4 +1,4 @@
-package gameStates;
+package GameStates;
 
 import _utilities.loaders.ImageHandler;
 import controller.game.LevelManager;

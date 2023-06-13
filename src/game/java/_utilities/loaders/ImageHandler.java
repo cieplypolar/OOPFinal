@@ -26,7 +26,7 @@ public class ImageHandler {
 
     public static BufferedImage reflectImg(BufferedImage img) {
         AffineTransform transform = AffineTransform.getScaleInstance(-1, 1);
-        transform.translate(-img.getWidth(null), 0);
+        transform.translate(-img.getWidth(), 0);
         AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         return op.filter(img, null);
     }

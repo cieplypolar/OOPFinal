@@ -34,14 +34,14 @@ public class EntityHelperMethods {
         float yIndex = y / (TILES_SIZE * SCALE);
 
         int value = lvlData[(int) yIndex][(int) xIndex];
-        if(value == 117)return false;
-        if(value == 118)return false;
-        if(value == 135)return false;
-        if(value == 136)return false;
-        if(value == 153)return false;
-        if(value == 154)return false;
-        if(value == 171)return false;
-        if(value == 172)return false;
+        if (value == 117) return false;
+        if (value == 118) return false;
+        if (value == 135) return false;
+        if (value == 136) return false;
+        if (value == 153) return false;
+        if (value == 154) return false;
+        if (value == 171) return false;
+        if (value == 172) return false;
 
         if (value <= 180 && value != 0)
             return true;
@@ -63,22 +63,21 @@ public class EntityHelperMethods {
         return isSolid(hitbox.x + xSpeed, hitbox.y + hitbox.height + 10, lvlData);
     }
 
-    public static boolean isSightClear(int[][] lvlData, Rectangle2D.Float hitbox1, Rectangle2D.Float hitbox2, int y){
+    public static boolean isSightClear(int[][] lvlData, Rectangle2D.Float hitbox1, Rectangle2D.Float hitbox2, int y) {
         int x1 = (int) (hitbox1.x / TILES_SIZE * SCALE);
         int x2 = (int) (hitbox2.x / TILES_SIZE * SCALE);
-        if (x1 > x2){
-            for (int i = 0; i < x1 - x2; ++i){
-                if(isTileSolid(x2 + i, y, lvlData)){
+        if (x1 > x2) {
+            for (int i = 0; i < x1 - x2; ++i) {
+                if (isTileSolid(x2 + i, y, lvlData)) {
                     return false;
                 }
 //                if(!isTileSolid(x2 + i, y + 10, lvlData)){
 //                    return false;
 //                }
             }
-        }
-        else {
-            for (int i = 0; i < x2 - x1; ++i){
-                if(isTileSolid(x1 + i, y, lvlData)){
+        } else {
+            for (int i = 0; i < x2 - x1; ++i) {
+                if (isTileSolid(x1 + i, y, lvlData)) {
                     return false;
                 }
 //                if(!isTileSolid(x1 + i, y + 2, lvlData)){

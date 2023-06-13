@@ -34,8 +34,8 @@ public class SuperiorEnemyView {
                                 reflectImg(goblinAni[getEnemyAnimationIndex(Constants.Enemy.EnemyType.Goblin, gob.getEnemy().getEnemyState().toString())][gob.getAniIndex()]),
                         (int) (gob.getEnemy().getHitBox().x - Constants.Enemy.Goblin.xOffSet * SCALE - xoff), (int) (gob.getEnemy().getHitBox().y - Constants.Enemy.Goblin.yOffset * SCALE - yoff),
                         Constants.Enemy.EnemyType.Goblin.WIDTH * SCALE, Constants.Enemy.EnemyType.Goblin.HEIGHT * SCALE, null);
-//                gob.getEnemy().drawHitBox(g, xoff, yoff);
-//                gob.drawAttackBox(g, xoff, yoff);
+                gob.getEnemy().drawHitBox(g, xoff, yoff);
+                gob.drawAttackBox(g, xoff, yoff);
             }
         }
     }
