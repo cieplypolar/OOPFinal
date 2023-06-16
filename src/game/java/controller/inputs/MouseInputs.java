@@ -80,6 +80,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
             case GAMEOVER -> {
                 gamePanel.getGame().getGameover().mouseReleased(e);
             }
+            case FINISH -> {
+                gamePanel.getGame().getFinish().mouseReleased(e);
+            }
         }
 
     }

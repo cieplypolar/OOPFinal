@@ -60,6 +60,7 @@ public class PlayerManager {
     public void checkHealth() {
         if (player.getHealth() <= 0) {
             GameState.gamestate = DEAD;
+            player.setIsDead(true);
         }
     }
 
@@ -129,36 +130,36 @@ public class PlayerManager {
             return;
 
         float xTemp = 0;
+        if (GameState.gamestate != DEAD) {
+            if (player.isLeft() && !player.isRight() && !player.isAttacking()) {
+                player.setFacing(Constants.Facing.LEFT);
+                xTemp = -player.getPlayerSpeed();
 
-        if (player.isLeft() && !player.isRight() && !player.isAttacking()) {
-            player.setFacing(Constants.Facing.LEFT);
-            xTemp = -player.getPlayerSpeed();
+            } else if (player.isRight() && !player.isLeft() && !player.isAttacking()) {
+                player.setFacing(Constants.Facing.RIGHT);
+                xTemp = player.getPlayerSpeed();
 
-        } else if (player.isRight() && !player.isLeft() && !player.isAttacking()) {
-            player.setFacing(Constants.Facing.RIGHT);
-            xTemp = player.getPlayerSpeed();
-
-        }
-        if(player.isInAir()){
-            if (canMoveHere(player.getHitBox().x, player.getHitBox().y + player.getPlayerAirSpeed(), player.getHitBox().width, player.getHitBox().height, game.getLevelManager().getLevel().getLevelLayout())) {
-                player.getHitBox().y += player.getPlayerAirSpeed();
-                player.setPlayerAirSpeed(player.getGravity() + player.getPlayerAirSpeed());
-                updateXPos(xTemp);
-            } else {
-                if (player.getPlayerAirSpeed() > 0) {
-                    player.setPlayerAirSpeed(0f);
-                    player.setInAir(false);
+            }
+            if (player.isInAir()) {
+                if (canMoveHere(player.getHitBox().x, player.getHitBox().y + player.getPlayerAirSpeed(), player.getHitBox().width, player.getHitBox().height, game.getLevelManager().getLevel().getLevelLayout())) {
+                    player.getHitBox().y += player.getPlayerAirSpeed();
+                    player.setPlayerAirSpeed(player.getGravity() + player.getPlayerAirSpeed());
+                    updateXPos(xTemp);
                 } else {
-                    player.setPlayerAirSpeed(player.getfallSpeedCollision());
+                    if (player.getPlayerAirSpeed() > 0) {
+                        player.setPlayerAirSpeed(0f);
+                        player.setInAir(false);
+                    } else {
+                        player.setPlayerAirSpeed(player.getfallSpeedCollision());
+                    }
+                    updateXPos(xTemp);
                 }
+            } else {
                 updateXPos(xTemp);
             }
+            player.setMoving(true);
         }
-        else {
-            updateXPos(xTemp);
-        }
-        player.setMoving(true);
-}
+    }
 
     private void updateXPos(float xTemp) {
         if (canMoveHere(player.getHitBox().x + xTemp, player.getHitBox().y, player.getHitBox().width, player.getHitBox().height, game.getLevelManager().getLevel().getLevelLayout())) {

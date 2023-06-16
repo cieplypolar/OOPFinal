@@ -15,7 +15,7 @@ public class Constants {
 
     public static class Paths {
         public final static String PLAYING_BACKGROUND = "/playingBackground/background_glacial_mountains_lightened.png";
-        public final static String LEVEL_DATA = "/level.graphics/enemytest.png";
+        public final static String LEVEL_DATA = "/level.graphics/biggestlevel.png";
         public final static String TILE_SET = "/level.graphics/Tileset.png";
     }
 
