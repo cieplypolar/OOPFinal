@@ -141,6 +141,7 @@ public class PlayerManager {
                 xTemp = player.getPlayerSpeed();
 
             }
+        }
             if (player.isInAir()) {
                 if (canMoveHere(player.getHitBox().x, player.getHitBox().y + player.getPlayerAirSpeed(), player.getHitBox().width, player.getHitBox().height, game.getLevelManager().getLevel().getLevelLayout())) {
                     player.getHitBox().y += player.getPlayerAirSpeed();
@@ -160,7 +161,7 @@ public class PlayerManager {
             }
             player.setMoving(true);
         }
-    }
+
 
     private void updateXPos(float xTemp) {
         if (canMoveHere(player.getHitBox().x + xTemp, player.getHitBox().y, player.getHitBox().width, player.getHitBox().height, game.getLevelManager().getLevel().getLevelLayout())) {
