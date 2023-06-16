@@ -28,6 +28,15 @@ public class EntityHelperMethods {
 
         return isTileSolid(x, y, lvlData);
     }
+    public static boolean isOnFinish(Rectangle2D.Float hitbox, int[][] levellayout){
+
+
+        if(levellayout[(int) hitbox.y/ (TILES_SIZE * SCALE)][(int) hitbox.x/ (TILES_SIZE * SCALE)]==175 && levellayout[(int) (hitbox.y)/ (TILES_SIZE * SCALE)][(int) (hitbox.x+hitbox.width)/ (TILES_SIZE * SCALE)]==175 )return true;
+
+        return false;
+
+    }
+
 
     private static boolean isTileSolid(float x, float y, int[][] lvlData) {
         float xIndex = x / (TILES_SIZE * SCALE);

@@ -18,7 +18,7 @@ public abstract class EnemyUnfortunatelyOnlyGoblin extends Entity {
     protected Constants.Enemy.EnemyType enemyType;
     protected int tileY;
     protected float attackRange = TILES_SIZE * SCALE;
-    protected int damage = 2;
+    protected int damage =  1;
 
     protected Rectangle2D.Float attackBox;
     protected int attackOffset;

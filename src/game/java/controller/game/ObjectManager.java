@@ -29,8 +29,8 @@ public class ObjectManager {
         this.game = game;
         loadImages();
         items=new ArrayList<>();
-        containers = loadContainers("/level.graphics/bigggglvl.png");
-        spikes = loadSpikes("/level.graphics/bigggglvl.png");
+        containers = loadContainers("/level.graphics/biggestlevel.png");
+        spikes = loadSpikes("/level.graphics/biggestlevel.png");
     }
 
     private void loadImages() {
@@ -46,7 +46,7 @@ public class ObjectManager {
         for (int i = 0; i < itemImages.length; i++)
             for (int j = 0; j < itemImages[i].length; j++)
                 itemImages[i][j] = heartimage.getSubimage(j * HEART_WIDTH_DEFAULT, i * HEART_HEIGHT_DEFAULT, HEART_WIDTH_DEFAULT, HEART_HEIGHT_DEFAULT);
-    spikeImage = importImg("/objects/spikes.png");
+        spikeImage = importImg("/objects/spikes.png");
     }
 
     public void update() {
@@ -88,9 +88,9 @@ public class ObjectManager {
 
 
     }
-public void pickUp(Heart heart){
+    public void pickUp(Heart heart){
         game.getPlayerManager().getPlayer().setHealth(game.getPlayerManager().getPlayer().getHealth()+1);
-}
+    }
     public void draw(Graphics g, int xLvlOffset, int yLvlOffset) {
         drawHearts(g, xLvlOffset, yLvlOffset);
         drawContainers(g, xLvlOffset, yLvlOffset);
@@ -115,7 +115,7 @@ public void pickUp(Heart heart){
                 if (c.getType() == BARREL) type = 1;
                 g.drawImage(containerImages[type][c.getAniIndex()], (int) c.getHitBox().x - c.getxDrawOffset() - xLvlOffset,
                         (int) c.getHitBox().y - c.getyDrawOffset() - yLvlOffset, CONTAINER_WIDTH, CONTAINER_HEIGHT, null);
-                c.drawHitBox(g,xLvlOffset,yLvlOffset);
+                // c.drawHitBox(g,xLvlOffset,yLvlOffset);
             }
 
         }
